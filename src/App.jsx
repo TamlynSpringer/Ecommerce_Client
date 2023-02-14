@@ -1,33 +1,23 @@
-import data from './data';
 import './App.css';
+import { Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Product from './pages/Product';
 
 const App = () => {
 return (
     <>
       <header>
-        <h1>Baltic Store</h1>
+        <Link to='/'>Baltic Store</Link>      
       </header>
       <main className='main'>
-        <h2>Featured products</h2>
-        <article className='products'>
-          {data.products.map(product => (
-            <div className='product' key={product.slug}>
-              <a href={`/product/${product.slug}`}>
-                <img src={product.image} alt={product.name} />
-              </a>
-              <a href={`/product/${product.slug}`}>
-                <p>{product.name}</p>
-              </a>
-              
-              <p><strong>{product.price}</strong></p>
-              <button>Add to cart</button>
-            </div>))
-          }
-        </article>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/product/:slug' element={<Product />} />
+        </Routes>       
       </main>
      
     </>
   )
-}
+};
 
-export default App
+export default App;

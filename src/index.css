@@ -14,3 +14,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #a3a2a2;
+}
+

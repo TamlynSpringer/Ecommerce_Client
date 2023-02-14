@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-header h1 {
+header a {
+  font-size: 3rem;
   color: #fff;
   font-weight: bold;
   text-decoration: none;
