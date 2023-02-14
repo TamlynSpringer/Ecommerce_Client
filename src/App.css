@@ -1,6 +1,37 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
+
+header h1 {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  margin: .5rem 2rem;
+}
+
+.main {
+  padding: 1rem;
+}
+
+.main h2 {
+  margin: 1rem;
+}
+.products {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+}
+
+.product {
+  border: 1px #40404040 solid;
+  margin: 1rem;
+}
+
+.product p {  
+  padding: .5rem;
+}
+
+.product img {
+  width: 100%;
+  max-width: 350px;
+} 
