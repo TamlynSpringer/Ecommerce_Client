@@ -19,7 +19,7 @@ return (
         </Navbar>
       </header>
       <main className='main'>
-        <Container>
+        <Container className='mt-4'>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/product/:slug' element={<Product />} />

@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,15 +12,29 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
+} */
 
 a {
   text-decoration: none;
-  color: #fff;
   cursor: pointer;
+  color: #000000;
 }
 
 a:hover {
-  color: #a3a2a2;
+  color: #23455c;
+
+}
+
+.rating i {
+  color: #3c759b;
+}
+
+.cart-button {
+  background-color: #3c759b;
+  border: #3c759b;
+}
+
+.cart-button:hover, .cart-button:after, .cart-button:active, .cart-button:active:after, .cart-button:focus {
+  background-color: #23455c;
 }
 

@@ -1,4 +1,4 @@
-* {
+/* * {
   box-sizing: border-box;
 }
 
@@ -28,7 +28,7 @@
 .product img {
   width: 100%;
   max-width: 350px;
-} 
+}  */
 
 .instructions {
   font-size: 0.75rem;

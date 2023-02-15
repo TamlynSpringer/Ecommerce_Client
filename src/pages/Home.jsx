@@ -1,6 +1,9 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useReducer, useRef } from 'react';
 import axios from '../api/axios';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Product from '../components/Product';
+import { Helmet } from 'react-helmet-async';
 
 const reducer = (state, action) => {
   switch(action.type) {
@@ -39,6 +42,9 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Baltic Store</title>
+      </Helmet>
       <h2>Featured products</h2>
       <section className='products'>
         {loading ? (
@@ -46,17 +52,13 @@ const Home = () => {
         ) : error ? (
           <p ref={errRef} className={error ? "errmsg" : "offscreen"} aria-live="assertive">{error}</p>
         ) : (
-          products?.map(product => (
-            <article className='product' key={product.slug}>
-              <Link to={`/product/${product.slug}`}>
-                <img src={product.image} alt={product.name} />
-              </Link>
-              <Link to={`/product/${product.slug}`}>
-                <p>{product.name}</p>
-              </Link>            
-              <p><strong>{product.price}</strong></p>
-              <button>Add to cart</button>
-            </article>))          
+          <Row>
+          {products?.map(product => (
+            <Col key={product.id} sm={6} md={4} lg={3} className='mb-3' >
+              <Product product={product} />
+            </Col>
+            ))} 
+          </Row>         
         )}
       </section>
     </>
