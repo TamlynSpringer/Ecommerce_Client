@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useEffect, useReducer, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../api/axios';
@@ -10,7 +10,10 @@ import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
 import Card from 'react-bootstrap/Card';
 import { Badge, Button } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
-
+import Loading from '../components/Loading';
+import Message from '../components/Message';
+import { getError } from '../utils/utils';
+import { Store } from '../context/Store';
 
 const reducer = (state, action) => {
   switch(action.type) {
@@ -42,16 +45,24 @@ const Product = () => {
         const result = await axios.get(`/api/products/${slug}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data })
       } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: err.message })
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) })
       }
     };
     fetchData();
   }, [slug]);
 
+  const { state, dispatch: cxtDispatch } = useContext(Store);
+  const addToCart = () => {
+    cxtDispatch({ 
+      type: 'CART_ADD_ITEM', 
+      payload: {...product, quantity: 1} 
+    })
+  }
+
   return loading ? (
-      <p>Loading...</p>
+    <Loading />
     ) : error ? (
-      <p>{error}</p>
+      <Message variant='danger' aria-live="assertive">{error}</Message>
     ) : (
     <section>
       <Row>
@@ -106,7 +117,7 @@ const Product = () => {
               {product.countInStock > 0 && (
                 <ListGroupItem>
                   <div className='d-grid'>
-                    <Button className='cart-button'>Add to cart</Button>
+                    <Button className='cart-button' onClick={addToCart}>Add to cart</Button>
                   </div>
                 </ListGroupItem>
               )}

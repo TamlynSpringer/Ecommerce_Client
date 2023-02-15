@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
+import Loading from '../components/Loading';
+import Message from '../components/Message';
 
 const reducer = (state, action) => {
   switch(action.type) {
@@ -48,9 +50,9 @@ const Home = () => {
       <h2>Featured products</h2>
       <section className='products'>
         {loading ? (
-          <p>Loading...</p>
+          <Loading />
         ) : error ? (
-          <p ref={errRef} className={error ? "errmsg" : "offscreen"} aria-live="assertive">{error}</p>
+          <Message variant='danger' aria-live="assertive">{error}</Message>
         ) : (
           <Row>
           {products?.map(product => (
