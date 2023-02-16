@@ -38,3 +38,11 @@ a:hover {
   background-color: #23455c;
 }
 
+.img-thumbnail {
+  height: 80px;
+}
+
+.small-container {
+  max-width: 600px;
+}
+

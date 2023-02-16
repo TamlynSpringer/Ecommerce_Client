@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import Product from './pages/Product';
+import HomePage from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
 import Navbar from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import { Nav } from 'react-bootstrap';
@@ -9,10 +9,13 @@ import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap'
 import { useContext } from 'react';
 import { Store } from './context/Store';
+import CartPage from './pages/CartPage';
+import LoginPage from './pages/LoginPage';
 
 const App = () => {
-  const { state } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart } = state;
+  console.log('state:', state)
 
   return (
     <div className='d-flex flex-column site-container'>
@@ -26,9 +29,12 @@ const App = () => {
               <Link to='/cart' className='nav-link'>
                 Cart &nbsp;
                 {cart.cartItems.length > 0 && (
-                  <Badge pill bg='warning'>{cart.cartItems.length}</Badge>
+                  <Badge pill bg='warning'>
+                    {cart.cartItems.reduce((a, c) => a + c?.quantity, 0)}
+                  </Badge>
                 )}
               </Link>
+              <Link to='/login' className='nav-link'>Login</Link>
             </Nav>
           </Container>
         </Navbar>
@@ -36,8 +42,10 @@ const App = () => {
       <main className='main'>
         <Container className='m-4'>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/product/:slug' element={<Product />} />
+            <Route path='/' element={<HomePage />} />
+            <Route path='/cart' element={<CartPage />} />
+            <Route path='/product/:slug' element={<ProductPage />} />
+            <Route path='/login' element={<LoginPage />} />
           </Routes>       
         </Container>
       </main>
