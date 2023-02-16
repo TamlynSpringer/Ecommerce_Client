@@ -74,7 +74,7 @@ const Cart = () => {
                         <i className='fas fa-plus-circle'></i>
                       </Button>
                     </Col>
-                    <Col md={3}>{item.price}</Col>
+                    <Col md={3}>${item.price}</Col>
                     <Col md={2}>
                       <Button variant='light'>
                         <i className='fa fa-trash'></i>
