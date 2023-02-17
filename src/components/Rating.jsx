@@ -4,6 +4,7 @@ const Rating = ({ rating, numReviews }) => {
   return (
     <section>
     <p className='rating'>
+      Ratings:&nbsp;&nbsp; 
       <span><i 
         className={rating >= 1 
         ? 'fas fa-star' 

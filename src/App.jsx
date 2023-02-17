@@ -78,9 +78,9 @@ const App = () => {
           </Routes>       
         </Container>
       </main>
-      <footer>
+      {/* <footer>
         <div className='text-center'>Tamlyn Springer | 2023 | All rights reserved</div>
-      </footer>
+      </footer> */}
      
     </div>
   )

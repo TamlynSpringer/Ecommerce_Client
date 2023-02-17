@@ -98,7 +98,7 @@ const ProductPage = () => {
               <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
             </ListGroupItem>
             <ListGroupItem>
-              Price : ${product.price}
+              Store: &nbsp;{product.brand}
             </ListGroupItem>
             <ListGroupItem>
               Description : {product.description}
