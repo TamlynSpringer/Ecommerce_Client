@@ -18,6 +18,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [brand, setBrand] = useState('');
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
@@ -31,6 +32,7 @@ const Register = () => {
       const { data } = await axios.post('/api/users/register', {
         email,
         password,
+        brand,
       });
       ctxDispatch({ type: 'USER_LOGIN', payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
@@ -70,11 +72,18 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Form.Group className="mb-3" controlId="confirmPassword">
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label>Confirm password</Form.Label>
             <Form.Control
               type="password"
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="brand">
+            <Form.Label>Store name</Form.Label>
+            <Form.Control
+              type="text"
+              onChange={(e) => setBrand(e.target.value)}
             />
           </Form.Group>
         </Form.Group>
@@ -82,7 +91,7 @@ const Register = () => {
           <Button type="submit">Submit</Button>
         </div>
         <div className="mb-3">
-          Already have an account?{' '}
+          Already have an account? &nbsp;
           <Link to={`/login?redirect=${redirect}`}>Login</Link>
         </div>
       </Form>

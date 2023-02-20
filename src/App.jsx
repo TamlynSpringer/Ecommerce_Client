@@ -2,10 +2,7 @@ import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
-import Navbar from 'react-bootstrap/Navbar';
-import Badge from 'react-bootstrap/Badge';
-import { Nav, NavDropdown } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
+import { Navbar, Badge, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 import { useContext } from 'react';
 import { Store } from './context/Store';
@@ -14,6 +11,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ProfilePage from './pages/ProfilePage';
+import ProtectedRoutes from './components/ProtectedRoutes';
 
 const App = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -75,6 +74,11 @@ const App = () => {
             <Route path='/product/:slug' element={<ProductPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
+            <Route path='/profile' element={
+              <ProtectedRoutes>
+                <ProfilePage />
+              </ProtectedRoutes>} 
+            />
           </Routes>       
         </Container>
       </main>
