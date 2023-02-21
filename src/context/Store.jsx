@@ -6,11 +6,17 @@ const initialState = {
     userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
     : null,
-  cart: {
-    cartItems: localStorage.getItem('cartItems')
-    ? JSON.parse(localStorage.getItem('cartItems'))
-    : []
-  },
+    cart: {
+      shippingAddress: localStorage.getItem('shippingAddress')
+        ? JSON.parse(localStorage.getItem('shippingAddress'))
+        : { location: {} },
+      paymentMethod: localStorage.getItem('paymentMethod')
+        ? localStorage.getItem('paymentMethod')
+        : '',
+      cartItems: localStorage.getItem('cartItems')
+        ? JSON.parse(localStorage.getItem('cartItems'))
+        : [],
+    },
 };
 
 const reducer = (state, action) => {
@@ -35,14 +41,33 @@ const reducer = (state, action) => {
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
     }
+    case 'CART_CLEAR':
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
     case 'USER_LOGIN':
       return { ...state, userInfo: action.payload };
     case 'USER_LOGOUT':
       return {
         ...state,
         userInfo: null,
-        cartItems: []
+        cart: {
+          cartItems: [],
+          shippingAddress: {},
+          paymentMethod: ''
+        }
       }
+    case 'SAVE_SHIPPING_ADDRESS':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          shippingAddress: action.payload,
+        },
+      };
+    case 'SAVE_PAYMENT_METHOD':
+      return {
+        ...state,
+        cart: { ...state.cart, paymentMethod: action.payload },
+      };
     default:
       return state;
   }

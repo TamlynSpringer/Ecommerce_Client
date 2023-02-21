@@ -13,6 +13,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoutes from './components/ProtectedRoutes';
+import AdminRoutes from './components/AdminRoutes';
+import DashboardPage from './pages/DashboardPage';
+import ShippingPage from './pages/ShippingPage';
+import PaymentPage from './pages/PaymentPage';
+import OrderPage from './pages/OrderPage';
 
 const App = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -20,7 +25,9 @@ const App = () => {
 
   const logoutHandler = () => {
     ctxDispatch({ type: 'USER_LOGOUT'});
-    localStorage.removeItem('userInfo')
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('shippingAddress');
+    localStorage.removeItem('paymentMethod');
   }
   return (
     <div className='d-flex flex-column site-container'>
@@ -61,6 +68,22 @@ const App = () => {
               ) 
               : (<Link to='/login' className='nav-link'>Login</Link>
               )}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title='Admin' id='admin-nav-dropdown'>
+                  <LinkContainer to='/admin/dashboard'>
+                    <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/productlist'>
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/orderlist'>
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/userlist'>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )}
               
             </Nav>
           </Container>
@@ -74,11 +97,34 @@ const App = () => {
             <Route path='/product/:slug' element={<ProductPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
+            {/* Protected user routes */}
             <Route path='/profile' element={
               <ProtectedRoutes>
                 <ProfilePage />
-              </ProtectedRoutes>} 
-            />
+              </ProtectedRoutes>
+            } />
+            <Route path='/shipping' element={
+              <ProtectedRoutes>
+                <ShippingPage />
+              </ProtectedRoutes>             
+            } />
+            <Route path='/payment' element={
+              <ProtectedRoutes>
+                <PaymentPage />
+              </ProtectedRoutes>             
+            } />
+            <Route path='/placeorder' element={
+              <ProtectedRoutes>
+                <OrderPage />
+              </ProtectedRoutes>
+            } />
+            {/* Admin routes */}
+            <Route path='/admin/dashboard' element={
+              <AdminRoutes>
+                <DashboardPage />
+              </AdminRoutes>
+            } />
+
           </Routes>       
         </Container>
       </main>
