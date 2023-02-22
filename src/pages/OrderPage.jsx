@@ -1,59 +1,103 @@
-import React, { useContext, useEffect } from 'react';
-import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
+import React, { useContext, useEffect, useReducer } from 'react';
+import { Card, Col, Row, ListGroup } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
-import { Link, useNavigate } from 'react-router-dom';
-import CheckoutSteps from '../components/CheckoutSteps';
+import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from '../api/axios';
+import Loading from '../components/Loading';
+import Message from '../components/Message';
 import { Store } from '../context/Store';
+import { getError } from '../utils/utils';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true, error: '' };
+    case 'FETCH_SUCCESS':
+      return { ...state, loading: false, order: action.payload, error: '' };
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload }; 
+    default:
+      return state;
+  }
+};
 
 const OrderPage = () => {
   const navigate = useNavigate();
+  const { state } = useContext(Store);
+  const { userInfo } = state;
 
-  const { state, dispatch: ctxDispatch } = useContext(Store );
-  const { cart, userInfo } = state;
+  const params = useParams();
+  const { id: orderId } = params;
 
-  
-  const decimal2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
-  
-  cart.itemsPrice = decimal2(cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0));
-  cart.shippingPrice = cart.itemsPrice > 100 ? decimal2(0) : decimal2(10);
-  cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
-  
-  const placeOrder = async () => {
-  };
+  const [{ loading, error, order }, dispatch] = useReducer(reducer, {
+    loading: true, 
+    order: {},
+    error: '',
+  });
 
   useEffect(() => {
-    if (!cart.paymentMethod) {
-      navigate('/payment')
+    const fetchOrder = async () => {
+      try {
+        dispatch({ type: 'FETCH_REQUEST' });
+        const { data } = await axios.get(`/api/orders/${orderId}`, {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        });
+        dispatch({ type: 'FETCH_SUCCESS', payload: data });
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) })
+      }
     }
-  }, [cart, navigate]);
+    if (!userInfo) {
+      return navigate('/login')
+    }
+    if (!order._id || (order._id && order._id !== orderId)) {
+      fetchOrder();
+    }
+  }, [order, userInfo, orderId, navigate]);
 
   return (
-    <div>
-      <CheckoutSteps step1 step2 step3 step4 ></CheckoutSteps>
-      <Helmet>
-        <title>Preview order</title>
-      </Helmet>
-      <h1 className='my-3'>Preview order</h1>
-      <Row>
+    loading ? (
+      <Loading></Loading>
+    ) : error ? (
+      <Message variant='danger'>{error}</Message>
+    ) : (
+      <div>
+        <Helmet>Order {orderId}</Helmet>
+        <h1>Order details: {orderId}</h1>
+        <Row>
         <Col md={8}>
-          <Card className='mb-3'>
+          <Card className="mb-3">
             <Card.Body>
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
-                <strong>Name: &nbsp;</strong> {cart.shippingAddress.fullname} <br />
-                <strong>Address: &nbsp;</strong> {cart.shippingAddress.address}, {cart.shippingAddress.city}, {cart.shippingAddress.postalCode}, {cart.shippingAddress.country}
+                <strong>Name: &nbsp;</strong> {order.shippingAddress.fullname} <br />
+                <strong>Address: &nbsp;</strong> {order.shippingAddress.address}, &nbsp;
+                {order.shippingAddress.city} {order.shippingAddress.postalCode},&nbsp;{order.shippingAddress.country}
+                &nbsp;
               </Card.Text>
-              <Link to='/shipping'>Edit</Link>
+              {order.isDelivered ? (
+                <Message variant="success">
+                  Delivered at {order.deliveredAt}
+                </Message>
+              ) : (
+                <Message variant="warning">Not delivered</Message>
+              )}
             </Card.Body>
           </Card>
-
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Payment</Card.Title>
               <Card.Text>
-                <strong>Method: &nbsp;</strong> {cart.paymentMethod}
+                <strong>Method: &nbsp;</strong> {order.paymentMethod}
               </Card.Text>
-              <Link to="/payment">Edit</Link>
+              {order.isPaid ? (
+                <Message variant="success">
+                  Paid at {order.paidAt}
+                </Message>
+              ) : (
+                <Message variant="warning">Not paid</Message>
+              )}
             </Card.Body>
           </Card>
 
@@ -61,7 +105,7 @@ const OrderPage = () => {
             <Card.Body>
               <Card.Title>Items</Card.Title>
               <ListGroup variant="flush">
-                {cart.cartItems.map((item) => (
+                {order.orderItems.map((item) => (
                   <ListGroup.Item key={item._id}>
                     <Row className="align-items-center">
                       <Col md={6}>
@@ -69,8 +113,8 @@ const OrderPage = () => {
                           src={item.image}
                           alt={item.name}
                           className="img-fluid rounded img-thumbnail"
-                        ></img>{'  '}
-                        <Link to={`/product/${item.slug}`}>&nbsp; &nbsp; {item.name}</Link>
+                        ></img>{' '}
+                        <Link to={`/product/${item.slug}`}>{item.name}</Link>
                       </Col>
                       <Col md={3}>
                         <span>{item.quantity}</span>
@@ -80,27 +124,24 @@ const OrderPage = () => {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              <Link to="/cart">Edit</Link>
-
             </Card.Body>
           </Card>
         </Col>
-
         <Col md={4}>
-          <Card>
+          <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Order Summary</Card.Title>
+              <Card.Title>Order summary</Card.Title>
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
                     <Col>Items</Col>
-                    <Col>${cart.itemsPrice.toFixed(2)}</Col>
+                    <Col>${order.itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Shipping</Col>
-                    <Col>${cart.shippingPrice.toFixed(2)}</Col>
+                    <Col>${order.shippingPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -109,30 +150,44 @@ const OrderPage = () => {
                       <strong> Order Total</strong>
                     </Col>
                     <Col>
-                      <strong>${cart.totalPrice.toFixed(2)}</strong>
+                      <strong>${order.totalPrice.toFixed(2)}</strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
-                <ListGroup.Item>
-                  <div className="d-grid">
-                    <Button
-                      type="button"
-                      onClick={placeOrder}
-                      disabled={cart.cartItems.length === 0}
-                    >
-                      Place Order
-                    </Button>
-                  </div>
-                  {/* {loading && <LoadingBox></LoadingBox>} */}
-                </ListGroup.Item>
+                {/* {!order.isPaid && (
+                  <ListGroup.Item>
+                    {isPending ? (
+                      <LoadingBox />
+                    ) : (
+                      <div>
+                        <PayPalButtons
+                          createOrder={createOrder}
+                          onApprove={onApprove}
+                          onError={onError}
+                        ></PayPalButtons>
+                      </div>
+                    )}
+                    {loadingPay && <LoadingBox></LoadingBox>}
+                  </ListGroup.Item>
+                )}
+                {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                  <ListGroup.Item>
+                    {loadingDeliver && <LoadingBox></LoadingBox>}
+                    <div className="d-grid">
+                      <Button type="button" onClick={deliverOrderHandler}>
+                        Deliver Order
+                      </Button>
+                    </div>
+                  </ListGroup.Item>
+                )} */}
               </ListGroup>
             </Card.Body>
           </Card>
         </Col>
-
       </Row>
-    </div>
+      </div>
+    )
   )
-}
+};
 
-export default OrderPage
+export default OrderPage;

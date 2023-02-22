@@ -17,6 +17,7 @@ import AdminRoutes from './components/AdminRoutes';
 import DashboardPage from './pages/DashboardPage';
 import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
 import OrderPage from './pages/OrderPage';
 
 const App = () => {
@@ -114,6 +115,11 @@ const App = () => {
               </ProtectedRoutes>             
             } />
             <Route path='/placeorder' element={
+              <ProtectedRoutes>
+                <PlaceOrderPage />
+              </ProtectedRoutes>
+            } />
+             <Route path='/order/:id' element={
               <ProtectedRoutes>
                 <OrderPage />
               </ProtectedRoutes>
