@@ -9,7 +9,7 @@ const data = {
       price: "$3.56",
       countInStock: 33,
       brand: "Star Bulk Carriers Corp.",
-      brandId: 7,
+      storeId: 7,
       rating: 4.5,
       numReviews: 10,
       description: "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante."
@@ -23,7 +23,7 @@ const data = {
       price: "$3.90",
       countInStock: 48,
       brand: "Sally Beauty Holdings, Inc.",
-      brandId: 1,
+      storeId: 1,
       rating: 4.5,
       numReviews: 10,
       description: "Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy."
@@ -37,7 +37,7 @@ const data = {
       price: "$5.75",
       countInStock: 28,
       brand: "Anthera Pharmaceuticals, Inc.",
-      brandId: 5,
+      storeId: 5,
       rating: 4.5,
       numReviews: 10,
       description: "Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. "
@@ -65,7 +65,7 @@ const data = {
       price: "$0.92",
       countInStock: 26,
       brand: "Veritex Holdings, Inc.",
-      brandId: 2,
+      storeId: 2,
       rating: 4.5,
       numReviews: 10,
       description: "Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero."

@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
+import axios from '../api/axios';
 import Loading from '../components/Loading';
 import Message from '../components/Message';
 import { Store } from '../context/Store';
+import { getError } from '../utils/utils';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -28,7 +30,7 @@ const reducer = (state, action) => {
   }
 }
 
-const DashboardPage = () => {
+const AdminDashboardPage = () => {
   const [{ loading, summary, error }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
@@ -92,7 +94,7 @@ const DashboardPage = () => {
             <Card>
               <Card.Body>
                 <Card.Title>
-                  {summary.orders && summary.users[0] 
+                  ${summary.orders && summary.users[0] 
                   ? summary.orders[0].totalSales.toFixed(2)
                   : 0}
                 </Card.Title>
@@ -107,4 +109,4 @@ const DashboardPage = () => {
   )
 };
 
-export default DashboardPage;
+export default AdminDashboardPage;

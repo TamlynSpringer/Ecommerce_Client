@@ -14,11 +14,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import AdminRoutes from './components/AdminRoutes';
-import DashboardPage from './pages/DashboardPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
 import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
 import OrderPage from './pages/OrderPage';
+import ProductListPage from './pages/ProductListPage';
+import ProductEditPage from './pages/ProductEditPage';
 
 const App = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -74,13 +76,13 @@ const App = () => {
                   <LinkContainer to='/admin/dashboard'>
                     <NavDropdown.Item>Dashboard</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/admin/productlist'>
+                  <LinkContainer to='/admin/products'>
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/admin/orderlist'>
+                  <LinkContainer to='/admin/orders'>
                     <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/admin/userlist'>
+                  <LinkContainer to='/admin/users'>
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
@@ -127,7 +129,17 @@ const App = () => {
             {/* Admin routes */}
             <Route path='/admin/dashboard' element={
               <AdminRoutes>
-                <DashboardPage />
+                <AdminDashboardPage />
+              </AdminRoutes>
+            } />
+            <Route path='/admin/products' element={
+              <AdminRoutes>
+                <ProductListPage />
+              </AdminRoutes>
+            } />
+            <Route path='/admin/product/:id' element={
+              <AdminRoutes>
+                <ProductEditPage />
               </AdminRoutes>
             } />
 
