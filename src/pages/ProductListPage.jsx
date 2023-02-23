@@ -96,7 +96,7 @@ export default function ProductListScreen() {
   }, [page, userInfo, successDelete]);
 
   const createHandler = async () => {
-    if (window.confirm('Are you sure to create?')) {
+    // if (window.confirm('Are you sure to create?')) {
       try {
         dispatch({ type: 'CREATE_REQUEST' });
         const { data } = await axios.post(
@@ -106,7 +106,7 @@ export default function ProductListScreen() {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }
         );
-        toast.success('product created successfully');
+        toast.success('Product created successfully');
         dispatch({ type: 'CREATE_SUCCESS' });
         navigate(`/admin/product/${data.product._id}`);
       } catch (err) {
@@ -115,7 +115,7 @@ export default function ProductListScreen() {
           type: 'CREATE_FAIL',
         });
       }
-    }
+    // }
   };
 
   const deleteHandler = async (product) => {
@@ -134,6 +134,7 @@ export default function ProductListScreen() {
       }
     }
   };
+  console.log(products)
 
   return (
     <div>
@@ -144,7 +145,7 @@ export default function ProductListScreen() {
         <Col className="col text-end">
           <div>
             <Button type="button" onClick={createHandler}>
-              Create Product
+              New product
             </Button>
           </div>
         </Col>
@@ -162,12 +163,13 @@ export default function ProductListScreen() {
           <table className="table">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>BRAND</th>
-                <th>ACTIONS</th>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Brand</th>
+                <th>Store</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -175,9 +177,10 @@ export default function ProductListScreen() {
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
-                  <td>{product.price}</td>
+                  <td>${product.price}</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>
+                  <td>Store {product.storeId}</td>
                   <td>
                     <Button
                       type="button"

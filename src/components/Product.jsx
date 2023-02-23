@@ -39,7 +39,7 @@ const Product = (props) => {
           <Card.Title>{product.name}</Card.Title>
         </Link>  
         {/* <Rating rating={product.rating} numReviews={product.numReviews} />           */}
-        <Card.Text>{product.brand}</Card.Text>
+        <Card.Text>Store {product.storeId}</Card.Text>
         <Card.Text><strong>${product.price}</strong></Card.Text>
         {product.countInStock === 0 
         ? <Button variant='light' disabled>Out of stock</Button> 
