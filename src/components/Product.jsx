@@ -30,13 +30,13 @@ const Product = (props) => {
   };
 
   return (
-    <Card className='product' >
+    <Card className='product bg'>
       <Link to={`/product/${product.slug}`}>
         <img src={product.image} alt={product.name} className='card-img-top' />
       </Link>
-      <Card.Body>
+      <Card.Body className='bg'>
         <Link to={`/product/${product.slug}`}>
-          <Card.Title>{product.name}</Card.Title>
+          <Card.Title className='bg'>{product.name}</Card.Title>
         </Link>  
         {/* <Rating rating={product.rating} numReviews={product.numReviews} />           */}
         <Card.Text>Store {product.storeId}</Card.Text>

@@ -19,8 +19,13 @@ import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
 import OrderPage from './pages/OrderPage';
+import OrderHistoryPage from './pages/OrderHistoryPage';
 import ProductListPage from './pages/ProductListPage';
 import ProductEditPage from './pages/ProductEditPage';
+import UserListPage from './pages/UserListPage';
+import UserEditScreen from './pages/UserEditPage';
+import OrderListPage from './pages/OrderListPage';
+import SellerRoutes from './components/SellerRoutes';
 
 const App = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -41,7 +46,7 @@ const App = () => {
             <LinkContainer to='/'>
             <Navbar.Brand>Baltic Store</Navbar.Brand>
             </LinkContainer>
-            <Nav className='me-auto'>
+            <Nav className='ml-auto'>
               <Link to='/cart' className='nav-link'>
                 Cart &nbsp;
                 {cart.cartItems.length > 0 && (
@@ -71,6 +76,18 @@ const App = () => {
               ) 
               : (<Link to='/login' className='nav-link'>Login</Link>
               )}
+
+              {userInfo && userInfo.isSeller && (
+                <NavDropdown title='Seller' id='seller-nav-dropdown'>
+                  <LinkContainer to='/productlist/seller'>
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/orderlist/seller'>
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>                
+                </NavDropdown>
+              )}
+
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='admin-nav-dropdown'>
                   <LinkContainer to='/admin/dashboard'>
@@ -96,14 +113,23 @@ const App = () => {
         <Container className='m-4'>
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/cart' element={<CartPage />} />
             <Route path='/product/:slug' element={<ProductPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             {/* Protected user routes */}
+            <Route path='/cart' element={
+              <ProtectedRoutes>
+                <CartPage />
+              </ProtectedRoutes>
+            } />
             <Route path='/profile' element={
               <ProtectedRoutes>
                 <ProfilePage />
+              </ProtectedRoutes>
+            } />
+              <Route path='/orders' element={
+              <ProtectedRoutes>
+                <OrderHistoryPage />
               </ProtectedRoutes>
             } />
             <Route path='/shipping' element={
@@ -126,6 +152,17 @@ const App = () => {
                 <OrderPage />
               </ProtectedRoutes>
             } />
+            {/* Seller routes */}
+            <Route path='/productlist/seller' element={
+              <SellerRoutes>
+                <ProductListPage />
+              </SellerRoutes>
+            } />
+              <Route path='/orderlist/seller' element={
+              <SellerRoutes>
+                <OrderListPage />
+              </SellerRoutes>
+            } />
             {/* Admin routes */}
             <Route path='/admin/dashboard' element={
               <AdminRoutes>
@@ -142,6 +179,23 @@ const App = () => {
                 <ProductEditPage />
               </AdminRoutes>
             } />
+            <Route path='/admin/users' element={
+              <AdminRoutes>
+                <UserListPage />
+              </AdminRoutes>
+            } />
+            <Route path='/admin/orders' element={
+              <AdminRoutes>
+                <OrderListPage />
+              </AdminRoutes>
+            } />
+            <Route
+              path="/admin/user/:id"
+              element={
+                <AdminRoutes>
+                  <UserEditScreen />
+                </AdminRoutes>
+              } />
 
           </Routes>       
         </Container>

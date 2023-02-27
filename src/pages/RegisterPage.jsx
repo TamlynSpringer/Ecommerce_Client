@@ -1,8 +1,6 @@
 import axios from '../api/axios';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { Container, Form, Button } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { useContext, useEffect, useState } from 'react';
 import { Store } from '../context/Store';
@@ -18,7 +16,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [brand, setBrand] = useState('');
+  // const [brand, setBrand] = useState('');
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
@@ -32,7 +30,7 @@ const Register = () => {
       const { data } = await axios.post('/api/users/register', {
         email,
         password,
-        brand,
+        // brand,
       });
       ctxDispatch({ type: 'USER_LOGIN', payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
@@ -79,13 +77,13 @@ const Register = () => {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="brand">
+          {/* <Form.Group className="mb-3" controlId="brand">
             <Form.Label>Store name</Form.Label>
             <Form.Control
               type="text"
               onChange={(e) => setBrand(e.target.value)}
             />
-          </Form.Group>
+          </Form.Group> */}
         </Form.Group>
         <div className="mb-3">
           <Button type="submit">Submit</Button>

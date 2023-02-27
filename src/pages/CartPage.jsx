@@ -76,7 +76,8 @@ const Cart = () => {
                     </Col>
                     <Col md={3}>${item.price}</Col>
                     <Col md={2}>
-                      <Button variant='light'>
+                      <Button variant='light'
+                      onClick={() => removeItem(item)}>                       
                         <i className='fa fa-trash'></i>
                       </Button>
                     </Col>

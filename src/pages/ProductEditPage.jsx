@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Store } from '../context/Store';
 import { getError } from '../utils/utils';
-import { Container, ListGroup, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import Loading from '../components/Loading';
 import Message from '../components/Message';
@@ -152,7 +152,7 @@ export default function ProductEditScreen() {
     console.log(images);
     console.log(images.filter((x) => x !== fileName));
     setImages(images.filter((x) => x !== fileName));
-    toast.success('Image removed successfully. click Update to apply it');
+    toast.success('Image removed successfully. Click "Update" to apply it');
   };
   return (
     <Container className="small-container">
