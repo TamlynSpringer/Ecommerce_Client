@@ -26,7 +26,8 @@ import UserListPage from './pages/UserListPage';
 import UserEditScreen from './pages/UserEditPage';
 import OrderListPage from './pages/OrderListPage';
 import SellerRoutes from './components/SellerRoutes';
-import logo from '../public/logo.svg';
+import logo from './logo.svg';
+import SellerPage from './pages/SellerPage';
 
 
 const App = () => {
@@ -83,6 +84,9 @@ const App = () => {
 
               {userInfo && userInfo.isSeller && (
                 <NavDropdown title='Seller' id='seller-nav-dropdown'>
+                  {/* <LinkContainer to='/seller/:id'>
+                    <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                  </LinkContainer> */}
                   <LinkContainer to='/seller/products'>
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
@@ -117,6 +121,7 @@ const App = () => {
         <Container className='m-4'>
           <Routes>
             <Route path='/' element={<HomePage />} />
+            <Route path='/seller/:id' element={<SellerPage />} />
             <Route path='/product/:slug' element={<ProductPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
@@ -157,6 +162,11 @@ const App = () => {
               </ProtectedRoutes>
             } />
             {/* Seller routes */}
+            {/* <Route path='/seller/:id' element={
+              <SellerRoutes>
+                <SellerPage />
+              </SellerRoutes>
+            } /> */}
             <Route path='/seller/products' element={
               <SellerRoutes>
                 <ProductListPage />

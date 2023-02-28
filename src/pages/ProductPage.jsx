@@ -1,13 +1,8 @@
 import { useEffect, useReducer, useRef, useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import axios from '../api/axios';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import ListGroup from 'react-bootstrap/ListGroup';
+import { Row, Col, ListGroup, ListGroupItem, Card, Badge, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
-import Card from 'react-bootstrap/Card';
-import { Badge, Button } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import Loading from '../components/Loading';
 import Message from '../components/Message';
@@ -77,7 +72,7 @@ const ProductPage = () => {
   return loading ? (
     <Loading />
     ) : error ? (
-      <Message variant='danger' aria-live="assertive">{error}</Message>
+      <Message variant='warning' aria-live="assertive">{error}</Message>
     ) : (
     <section>
       <Helmet>
@@ -104,6 +99,12 @@ const ProductPage = () => {
             </ListGroupItem>
             <ListGroupItem className='bg'>
               Description : {product.description}
+            </ListGroupItem>
+            <ListGroupItem>
+              Seller: &nbsp; 
+                <Link to={`/seller/${product.seller?._id}`}>
+                  {product.seller?.seller.name}
+                </Link>
             </ListGroupItem>
           </ListGroup>
         </Col>

@@ -74,18 +74,25 @@ export default function ProductListScreen() {
   const sp = new URLSearchParams(search);
   const page = sp.get('page') || 1;
 
+  const location = useLocation();
+  const sellerMode = location.pathname.includes('/seller');
+
   const { state } = useContext(Store);
   const { userInfo } = state;
+  console.log(userInfo?._id)
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (sellerMode) => {
       try {
-        const { data } = await axios.get(`/api/products/admin?page=${page} `, {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
+        const { data } = await axios.get(`/api/products/admin?page=${page}&seller=${sellerMode ? userInfo?._id : ''}`, {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
         });
 
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
-      } catch (err) {}
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL'});
+        toast.error(getError(err));
+      }
     };
 
     if (successDelete) {
@@ -93,7 +100,7 @@ export default function ProductListScreen() {
     } else {
       fetchData();
     }
-  }, [page, userInfo, successDelete]);
+  }, [page, userInfo, successDelete, sellerMode]);
 
   const createHandler = async () => {
     if (window.confirm('Are you sure you want to create a new product?')) {
@@ -187,6 +194,7 @@ export default function ProductListScreen() {
                       variant="light"
                       onClick={() => navigate(`/admin/product/${product._id}`)}
                     >
+
                       Edit
                     </Button>
                     &nbsp;
@@ -207,7 +215,7 @@ export default function ProductListScreen() {
               <Link
                 className={x + 1 === Number(page) ? 'btn text-bold' : 'btn'}
                 key={x + 1}
-                to={`/admin/products?page=${x + 1}`}
+                to={`${sellerMode ? `/seller/products/` : `admin/products`}?page=${x + 1}`}
               >
                 {x + 1}
               </Link>

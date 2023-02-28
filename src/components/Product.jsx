@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 import Rating from './Rating';
 import { Store } from '../context/Store';
 import axios from '../api/axios';
@@ -39,8 +38,12 @@ const Product = (props) => {
           <Card.Title className='bg'>{product.name}</Card.Title>
         </Link>  
         {/* <Rating rating={product.rating} numReviews={product.numReviews} />           */}
-        <Card.Text>Store {product.storeId}</Card.Text>
+        {/* <Card.Text>Store {product.storeId}</Card.Text> */}
         <Card.Text><strong>${product.price}</strong></Card.Text>
+        <Card.Text>
+          <Link to={`/seller/${product.seller?._id}`}>{product.seller?.seller.name}</Link>
+        </Card.Text>
+
         {product.countInStock === 0 
         ? <Button variant='light' disabled>Out of stock</Button> 
         : <Button onClick={() => addToCart(product)} className='cart-button'>Add to cart</Button>}

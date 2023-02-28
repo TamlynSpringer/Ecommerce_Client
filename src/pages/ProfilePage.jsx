@@ -3,8 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
-import Loading from '../components/Loading';
-import Message from '../components/Message';
 import axios from '../api/axios';
 import { Store } from '../context/Store';
 import { getError } from '../utils/utils';
@@ -130,7 +128,7 @@ export default function ProfileScreen() {
           </>
         )}
         <div className="mb-3">
-          <Button type="submit">Update</Button>
+          <Button disabled={loadingUpdate} type="submit">Update</Button>
         </div>
       </form>
     </div>
