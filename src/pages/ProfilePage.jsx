@@ -30,9 +30,9 @@ export default function ProfileScreen() {
   const [email, setEmail] = useState(userInfo.email);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [sellerName, setSellerName] = useState(userInfo.name || '');
-  const [sellerDescription, setSellerDescription] = useState(userInfo.description || '');
-  const [storeId, setStoreId] = useState(userInfo.storeId || '');
+  const [sellerName, setSellerName] = useState(userInfo.sellerName || '');
+  const [sellerDescription, setSellerDescription] = useState(userInfo.sellerDescription || '');
+  const [storeId, setStoreId] = useState(userInfo.storeId || 0);
 
   const [{ loadingUpdate }, dispatch] = useReducer(reducer, {
     loadingUpdate: false,
@@ -57,7 +57,7 @@ export default function ProfileScreen() {
       dispatch({
         type: 'UPDATE_SUCCESS',
       });
-      ctxDispatch({ type: 'USER_SIGNIN', payload: data });
+      ctxDispatch({ type: 'USER_LOGIN', payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
       toast.success('User updated successfully');
       
@@ -122,7 +122,7 @@ export default function ProfileScreen() {
             <Form.Group className="mb-3" controlId="storeId">
               <Form.Label>Store ID</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 value={storeId}
                 onChange={(e) => setStoreId(e.target.value)}
               />

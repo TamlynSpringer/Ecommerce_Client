@@ -16,7 +16,8 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  // const [brand, setBrand] = useState('');
+  const [isSeller, setIsSeller] = useState(false)
+  const [storeId, setStoreId] = useState('');
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
@@ -30,7 +31,8 @@ const Register = () => {
       const { data } = await axios.post('/api/users/register', {
         email,
         password,
-        // brand,
+        isSeller,
+        storeId
       });
       ctxDispatch({ type: 'USER_LOGIN', payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
@@ -77,13 +79,20 @@ const Register = () => {
               required
             />
           </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="brand">
+          <Form.Group className="mb-3" controlId="isSeller">
+            <Form.Label>Are you a store seller?</Form.Label>
+            <Form.Check
+              type="switch"
+              onChange={() => setIsSeller(true)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="storeId">
             <Form.Label>Store name</Form.Label>
             <Form.Control
-              type="text"
-              onChange={(e) => setBrand(e.target.value)}
+              type="number"
+              onChange={(e) => setStoreId(e.target.value)}
             />
-          </Form.Group> */}
+          </Form.Group>
         </Form.Group>
         <div className="mb-3">
           <Button type="submit">Submit</Button>

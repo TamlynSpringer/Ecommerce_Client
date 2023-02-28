@@ -60,7 +60,7 @@ export default function ProductEditScreen() {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState('');
   const [brand, setBrand] = useState('');
-  const [storeId, setStore] = useState('');
+  const [storeId, setStoreId] = useState('');
   const [description, setDescription] = useState('');
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function ProductEditScreen() {
         setCategory(data.category);
         setCountInStock(data.countInStock);
         setBrand(data.brand);
-        setStore(data.storeId);
+        setStoreId(data.storeId);
         setDescription(data.description);
         dispatch({ type: 'FETCH_SUCCESS' });
       } catch (err) {
@@ -157,9 +157,9 @@ export default function ProductEditScreen() {
   return (
     <Container className="small-container">
       <Helmet>
-        <title>Edit Product ${productId}</title>
+        <title>Edit product ${productId}</title>
       </Helmet>
-      <h1>Edit Product {productId}</h1>
+      <h1>Edit product {productId}</h1>
 
       {loading ? (
         <Loading></Loading>
@@ -225,7 +225,7 @@ export default function ProductEditScreen() {
             <Form.Label>Store</Form.Label>
             <Form.Control
               value={storeId}
-              onChange={(e) => setStore(e.target.value)}
+              onChange={(e) => setStoreId(e.target.value)}
               required
             />
           </Form.Group>

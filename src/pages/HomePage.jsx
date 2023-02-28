@@ -45,7 +45,9 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Baltic Store</title>
+        <title>
+          Baltic Store
+        </title>
       </Helmet>
       <h2>Featured products</h2>
       <section className='products'>

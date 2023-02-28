@@ -108,7 +108,7 @@ export default function ProductListScreen() {
         );
         toast.success('Product created successfully');
         dispatch({ type: 'CREATE_SUCCESS' });
-        navigate(`/admin/products/${data.product._id}`);
+        navigate(`/admin/product/${data.product._id}`);
       } catch (err) {
         toast.error(getError(error));
         dispatch({

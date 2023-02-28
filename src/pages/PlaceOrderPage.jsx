@@ -38,7 +38,7 @@ const PlaceOrderPage = () => {
   const decimal2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
   
   cart.itemsPrice = decimal2(cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0));
-  cart.shippingPrice = cart.itemsPrice > 100 ? decimal2(0) : decimal2(10);
+  cart.shippingPrice = cart.itemsPrice > 100 ? decimal2(0) : decimal2(5);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
   
   const placeOrder = async () => {

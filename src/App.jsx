@@ -26,6 +26,8 @@ import UserListPage from './pages/UserListPage';
 import UserEditScreen from './pages/UserEditPage';
 import OrderListPage from './pages/OrderListPage';
 import SellerRoutes from './components/SellerRoutes';
+import logo from '../public/logo.svg';
+
 
 const App = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -44,7 +46,9 @@ const App = () => {
         <Navbar bg='dark' variant='dark'>
           <Container>
             <LinkContainer to='/'>
-            <Navbar.Brand>Baltic Store</Navbar.Brand>
+            <Navbar.Brand>
+              <img src={logo} alt='logo' height='75px'/>
+            </Navbar.Brand>
             </LinkContainer>
             <Nav className='ml-auto'>
               <Link to='/cart' className='nav-link'>
@@ -79,10 +83,10 @@ const App = () => {
 
               {userInfo && userInfo.isSeller && (
                 <NavDropdown title='Seller' id='seller-nav-dropdown'>
-                  <LinkContainer to='/productlist/seller'>
+                  <LinkContainer to='/seller/products'>
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/orderlist/seller'>
+                  <LinkContainer to='/seller/orders'>
                     <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>                
                 </NavDropdown>
@@ -153,12 +157,12 @@ const App = () => {
               </ProtectedRoutes>
             } />
             {/* Seller routes */}
-            <Route path='/productlist/seller' element={
+            <Route path='/seller/products' element={
               <SellerRoutes>
                 <ProductListPage />
               </SellerRoutes>
             } />
-              <Route path='/orderlist/seller' element={
+              <Route path='/seller/orders' element={
               <SellerRoutes>
                 <OrderListPage />
               </SellerRoutes>
