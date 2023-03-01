@@ -32,7 +32,7 @@ const Register = () => {
         email,
         password,
         isSeller,
-        storeId
+        // storeId
       });
       ctxDispatch({ type: 'USER_LOGIN', payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
@@ -86,13 +86,13 @@ const Register = () => {
               onChange={() => setIsSeller(true)}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="storeId">
+          {/* <Form.Group className="mb-3" controlId="storeId">
             <Form.Label>Store name</Form.Label>
             <Form.Control
               type="number"
               onChange={(e) => setStoreId(e.target.value)}
             />
-          </Form.Group>
+          </Form.Group> */}
         </Form.Group>
         <div className="mb-3">
           <Button type="submit">Submit</Button>

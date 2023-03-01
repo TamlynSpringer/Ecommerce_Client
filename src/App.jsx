@@ -62,7 +62,7 @@ const App = () => {
               </Link>
               {userInfo 
               ? (
-                <NavDropdown title={`Logged in as ${userInfo.email}`}  id='basic-nav-dropdown'>
+                <NavDropdown title='Profile'  id='basic-nav-dropdown'>
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>User profile</NavDropdown.Item>
                   </LinkContainer>

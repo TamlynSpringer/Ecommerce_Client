@@ -41,7 +41,7 @@ const Product = (props) => {
         {/* <Card.Text>Store {product.storeId}</Card.Text> */}
         <Card.Text><strong>${product.price}</strong></Card.Text>
         <Card.Text>
-          <Link to={`/seller/${product.seller?._id}`}>{product.seller?.seller.name}</Link>
+          <Link to={`/seller/${product?.seller?._id}`}>{product.seller?.seller?.name}</Link>
         </Card.Text>
 
         {product.countInStock === 0 

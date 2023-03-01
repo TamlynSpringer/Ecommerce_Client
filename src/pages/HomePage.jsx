@@ -1,7 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react';
 import axios from '../api/axios';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
 import Loading from '../components/Loading';

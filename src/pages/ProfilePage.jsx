@@ -30,7 +30,7 @@ export default function ProfileScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [sellerName, setSellerName] = useState(userInfo.sellerName || '');
   const [sellerDescription, setSellerDescription] = useState(userInfo.sellerDescription || '');
-  const [storeId, setStoreId] = useState(userInfo.storeId || 0);
+  // const [storeId, setStoreId] = useState(userInfo.storeId || 0);
 
   const [{ loadingUpdate }, dispatch] = useReducer(reducer, {
     loadingUpdate: false,
@@ -46,7 +46,7 @@ export default function ProfileScreen() {
           password,
           sellerName,
           sellerDescription,
-          storeId
+          // storeId
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -72,7 +72,9 @@ export default function ProfileScreen() {
       <Helmet>
         <title>User profile</title>
       </Helmet>
-      <h1 className="my-3">User profile</h1>
+      <h1 className="my-3">Logged in as {userInfo.email}</h1>
+      <br />
+      <h2>User profile</h2>
       <form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Email</Form.Label>
@@ -117,14 +119,14 @@ export default function ProfileScreen() {
                 onChange={(e) => setSellerDescription(e.target.value)}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="storeId">
+            {/* <Form.Group className="mb-3" controlId="storeId">
               <Form.Label>Store ID</Form.Label>
               <Form.Control
                 type="number"
                 value={storeId}
                 onChange={(e) => setStoreId(e.target.value)}
               />
-            </Form.Group>
+            </Form.Group> */}
           </>
         )}
         <div className="mb-3">
