@@ -103,7 +103,7 @@ const ProductPage = () => {
             <ListGroupItem>
               Seller: &nbsp; 
                 <Link to={`/seller/${product.seller?._id}`}>
-                  {product.seller?.seller.name}
+                  {product.seller?.seller?.name}
                 </Link>
             </ListGroupItem>
           </ListGroup>

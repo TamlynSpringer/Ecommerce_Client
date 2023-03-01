@@ -40,6 +40,8 @@ const App = () => {
     localStorage.removeItem('shippingAddress');
     localStorage.removeItem('paymentMethod');
   }
+
+  console.log(userInfo._id, 'user info in App')
   return (
     <div className='d-flex flex-column site-container'>
       <ToastContainer position='bottom-center' limit={1} />
@@ -53,7 +55,7 @@ const App = () => {
             </LinkContainer>
             <Nav className='ml-auto'>
               <Link to='/cart' className='nav-link'>
-                Cart &nbsp;
+              <i className="fa-solid fa-cart-shopping"></i>&nbsp;Cart &nbsp;
                 {cart.cartItems.length > 0 && (
                   <Badge pill bg='warning'>
                     {cart.cartItems.reduce((a, c) => a + c?.quantity, 0)}
@@ -84,10 +86,10 @@ const App = () => {
 
               {userInfo && userInfo.isSeller && (
                 <NavDropdown title='Seller' id='seller-nav-dropdown'>
-                  {/* <LinkContainer to='/seller/:id'>
-                    <NavDropdown.Item>Dashboard</NavDropdown.Item>
-                  </LinkContainer> */}
-                  <LinkContainer to='/seller/products'>
+                  <LinkContainer to={`/seller/${userInfo?._id}`}>
+                    <NavDropdown.Item>Store</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to={`/seller/products`}>
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/seller/orders'>
@@ -162,14 +164,19 @@ const App = () => {
               </ProtectedRoutes>
             } />
             {/* Seller routes */}
-            {/* <Route path='/seller/:id' element={
+            <Route path={`/seller/:id`} element={
               <SellerRoutes>
                 <SellerPage />
               </SellerRoutes>
-            } /> */}
+            } />
             <Route path='/seller/products' element={
               <SellerRoutes>
                 <ProductListPage />
+              </SellerRoutes>
+            } />
+            <Route path='/seller/product/:id' element={
+              <SellerRoutes>
+                <ProductEditPage />
               </SellerRoutes>
             } />
               <Route path='/seller/orders' element={

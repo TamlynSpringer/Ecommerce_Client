@@ -30,7 +30,6 @@ export default function ProfileScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [sellerName, setSellerName] = useState(userInfo.sellerName || '');
   const [sellerDescription, setSellerDescription] = useState(userInfo.sellerDescription || '');
-  // const [storeId, setStoreId] = useState(userInfo.storeId || 0);
 
   const [{ loadingUpdate }, dispatch] = useReducer(reducer, {
     loadingUpdate: false,
@@ -46,7 +45,6 @@ export default function ProfileScreen() {
           password,
           sellerName,
           sellerDescription,
-          // storeId
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -86,14 +84,14 @@ export default function ProfileScreen() {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Update password</Form.Label>
           <Form.Control
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>Confirm updated password</Form.Label>
           <Form.Control
             type="password"
             value={confirmPassword}
@@ -102,7 +100,7 @@ export default function ProfileScreen() {
         </Form.Group>
         {userInfo.isSeller && (
           <>
-            <h2>Seller</h2>
+            <h2>Seller profile</h2>
             <Form.Group className="mb-3" controlId="sellerName">
               <Form.Label>Seller name</Form.Label>
               <Form.Control
@@ -119,14 +117,6 @@ export default function ProfileScreen() {
                 onChange={(e) => setSellerDescription(e.target.value)}
               />
             </Form.Group>
-            {/* <Form.Group className="mb-3" controlId="storeId">
-              <Form.Label>Store ID</Form.Label>
-              <Form.Control
-                type="number"
-                value={storeId}
-                onChange={(e) => setStoreId(e.target.value)}
-              />
-            </Form.Group> */}
           </>
         )}
         <div className="mb-3">

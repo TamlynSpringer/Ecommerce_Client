@@ -52,7 +52,7 @@ const reducer = (state, action) => {
   }
 };
 
-export default function ProductListScreen() {
+export default function ProductListScreen(props) {
   const [
     {
       loading,
@@ -80,6 +80,7 @@ export default function ProductListScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
   console.log(userInfo?._id)
+  console.log(sellerMode)
 
   useEffect(() => {
     const fetchData = async (sellerMode) => {
@@ -113,9 +114,9 @@ export default function ProductListScreen() {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }
         );
-        toast.success('Product created successfully');
+        navigate(`${sellerMode ? `/seller/product/${data.product._id}` : `/admin/product/${data.product._id}`}`);        
         dispatch({ type: 'CREATE_SUCCESS' });
-        navigate(`/admin/product/${data.product._id}`);
+        toast.success('Product created successfully');
       } catch (err) {
         toast.error(getError(error));
         dispatch({
@@ -180,21 +181,24 @@ export default function ProductListScreen() {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {products?.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
                   <td>${product.price}</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>
-                  <td>Store {product.storeId}</td>
+                  <td>
+                    {product.seller ?  
+                    <Link to={`/seller/${product.seller}`}>&nbsp;<i className="fa-solid fa-store"></i>&nbsp;</Link> :
+                    ''}                  
+                  </td>
                   <td>
                     <Button
                       type="button"
                       variant="light"
-                      onClick={() => navigate(`/admin/product/${product._id}`)}
+                      onClick={() =>  navigate(`${sellerMode ? `/seller/product/${product._id}` : `/admin/product/${product._id}`}`)}                        
                     >
-
                       Edit
                     </Button>
                     &nbsp;

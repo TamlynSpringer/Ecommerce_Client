@@ -59,7 +59,7 @@ export default function SellerPage() {
         fetchData();
     }, [sellerId]);
 
-    console.log(user.seller)
+    console.log(user.seller, user._id)
 
     return (
         <>

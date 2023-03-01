@@ -116,7 +116,7 @@ export default function UserListPage() {
                 <td>{user._id}</td>
                 <td>{user.email}</td>
                 <td>{user.isAdmin ? 'Admin ' : ''}{user.isSeller ? 'Seller ' : ''}{(!user.isSeller || !user.isAdmin) ? 'User ' : ''} </td>
-                <td>{user.storeId}</td>
+                <td>{user.storeId}</td> //Change to seller page link
                 <td>
                   <Button
                     type="button"

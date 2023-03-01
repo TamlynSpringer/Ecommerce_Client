@@ -41,7 +41,6 @@ export default function UserEditScreen() {
   const { id: userId } = params;
   const navigate = useNavigate();
 
-  const [storeId, setStoreId] = useState('');
   const [email, setEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSeller, setIsSeller] = useState(false);
@@ -53,7 +52,6 @@ export default function UserEditScreen() {
         const { data } = await axios.get(`/api/users/${userId}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        setStoreId(data.storeId);
         setEmail(data.email);
         setIsAdmin(data.isAdmin);
         setIsSeller(data.isSeller);
@@ -74,7 +72,7 @@ export default function UserEditScreen() {
       dispatch({ type: 'UPDATE_REQUEST' });
       await axios.put(
         `/api/users/${userId}`,
-        { _id: userId, storeId, email, isAdmin, isSeller },
+        { _id: userId, email, isAdmin, isSeller },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }
@@ -128,14 +126,6 @@ export default function UserEditScreen() {
             checked={isSeller}
             onChange={(e) => setIsSeller(e.target.checked)}
           />
-          {/* <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Store ID</Form.Label>
-            <Form.Control
-              value={storeId}
-              onChange={(e) => setStoreId(e.target.value)}
-              required
-            />
-          </Form.Group> */}
 
           <div className="mb-3">
             <Button disabled={loadingUpdate} type="submit">
