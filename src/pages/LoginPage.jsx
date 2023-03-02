@@ -59,7 +59,7 @@ const LoginPage = () => {
           <FormControl type='password' required onChange={(e) => setPassword(e.target.value)} />
         </FormGroup>
         <div className='mb-3'>
-          <Button type='submit'>Login</Button>
+          <Button type='submit' className='blue-button'>Login</Button>
         </div>
         <div>
           New user? &nbsp; <Link to={`/register?redirect=${redirect}`}>Register account</Link>

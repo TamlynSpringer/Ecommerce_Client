@@ -83,12 +83,12 @@ export default function SellerPage() {
                                 <Col>Store description: {user?.seller?.description}</Col>
                             </Row>
                         </ListGroup.Item>
-                        <ListGroup.Item>
+                        {/* <ListGroup.Item>
                             <Rating
                                 rating={user?.seller?.rating}
                                 numReviews={user?.seller?.numReviews}
                             ></Rating>
-                        </ListGroup.Item>
+                        </ListGroup.Item> */}
                         <ListGroup.Item>
                             <Row>
                                 <Col>

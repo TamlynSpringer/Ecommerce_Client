@@ -152,7 +152,7 @@ export default function ProductListScreen(props) {
         </Col>
         <Col className="col text-end">
           <div>
-            <Button type="button" onClick={createHandler}>
+            <Button type="button" className="blue-button" onClick={createHandler}>
               New product
             </Button>
           </div>

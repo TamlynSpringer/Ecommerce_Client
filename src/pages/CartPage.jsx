@@ -102,7 +102,7 @@ const Cart = () => {
                   <div className='d-grid'>
                     <Button
                       type='button'
-                      className='cart-button'
+                      className='blue-button'
                       disabled={cartItems?.length === 0}
                       onClick={checkout}
                     >

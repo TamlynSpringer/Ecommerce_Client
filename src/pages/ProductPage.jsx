@@ -92,7 +92,7 @@ const ProductPage = () => {
               <h1>{product.name}</h1>
             </ListGroupItem>
             <ListGroupItem className='bg'>
-              <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
+              Category: &nbsp;{product.category}
             </ListGroupItem>
             <ListGroupItem className='bg'>
               Brand: &nbsp;{product.brand}
@@ -100,7 +100,7 @@ const ProductPage = () => {
             <ListGroupItem className='bg'>
               Description : {product.description}
             </ListGroupItem>
-            <ListGroupItem>
+            <ListGroupItem className='bg'>
               Seller: &nbsp; 
                 <Link to={`/seller/${product.seller?._id}`}>
                   {product.seller?.seller?.name}
@@ -133,7 +133,7 @@ const ProductPage = () => {
               {product.countInStock > 0 && (
                 <ListGroupItem  className='bg'>
                   <div className='d-grid'>
-                    <Button className='cart-button' onClick={addToCart}>Add to cart</Button>
+                    <Button className='blue-button' onClick={addToCart}>Add to cart</Button>
                   </div>
                 </ListGroupItem>
               )}

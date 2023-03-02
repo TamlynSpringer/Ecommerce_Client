@@ -235,7 +235,7 @@ export default function ProductEditScreen() {
             />
           </Form.Group>
           <div className="mb-3">
-            <Button disabled={loadingUpdate} type="submit">
+            <Button disabled={loadingUpdate} type="submit" className='blue-button'>
               Update
             </Button>
             {loadingUpdate && <Loading></Loading>}

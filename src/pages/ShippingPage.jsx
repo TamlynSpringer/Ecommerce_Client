@@ -98,11 +98,11 @@ const ShippingPage = () => {
             />
           </Form.Group>
           <div className='mb-3'>
-            <Button variant='primary' type='submit'>Continue</Button>
+            <Button className='blue-button' type='submit'>Continue</Button>
           </div>
         </Form>
     </div>
   )
-}
+};
 
-export default ShippingPage
+export default ShippingPage;

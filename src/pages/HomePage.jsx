@@ -42,14 +42,14 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className='home'>
       <Helmet>
         <title>
           Baltic Store
         </title>
       </Helmet>
       <h2>Featured products</h2>
-      <section className='products'>
+      <section className='products d-flex justify-content-between'>
         {loading ? (
           <Loading />
         ) : error ? (
@@ -64,7 +64,7 @@ const Home = () => {
           </Row>         
         )}
       </section>
-    </>
+    </div>
   )
 };
 

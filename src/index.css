@@ -1,45 +1,43 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-} */
+.root {
+  box-sizing: border-box;
+  background-color: #2e3236;
+  color: #fff;
+  height: 100%
+}
 
 .main {
   background-color: #2e3236;
   color: #fff;
+  height: 100%;
 }
 
-a {
-  text-decoration: none;
+
+a, li {
   cursor: pointer;
-  color: #000000;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  list-style: none;
 }
 
-a:hover {
+a:hover, a.nav-link:hover {
   color: #23455c;
+}
 
+a.nav-link {
+  color: #fff
 }
 
 .rating i {
   color: #3c759b;
 }
 
-.cart-button {
+.blue-button {
   background-color: #3c759b;
   border: #3c759b;
 }
 
-.cart-button:hover, .cart-button:after, .cart-button:active, .cart-button:active:after, .cart-button:focus {
+.blue-button:hover, .blue-button:after, .blue-button:active, .blue-button:active:after, .blue-button:focus, .blue-button:disabled {
   background-color: #23455c;
 }
 
@@ -49,6 +47,7 @@ a:hover {
 
 .small-container {
   max-width: 600px;
+  min-height: 100vh;
 }
 
 h1, h2, h3, p {
@@ -61,6 +60,43 @@ h1, h2, h3, p {
   border: none;
 }
 
+.logo {
+  padding: 0 3rem 
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .product {
   border-radius: 20px;
 }
+
+.img-small {
+  max-height: 700px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+.side-navbar {
+  width: 240px;
+  height: 100%;
+  position: absolute;
+  left: -300px;
+  background-color: #2e3236;
+  transition: 0.5s;
+}
+
+.site-container {
+  transition: 0.4s;
+}
+.active-cont {
+  margin-left: 240px;
+}
+.active-nav {
+  left: 0;
+}
+

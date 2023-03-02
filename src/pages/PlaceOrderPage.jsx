@@ -162,6 +162,7 @@ const PlaceOrderPage = () => {
                   <div className="d-grid">
                     <Button
                       type="button"
+                      className='blue-button'
                       onClick={placeOrder}
                       disabled={cart.cartItems.length === 0}
                     >

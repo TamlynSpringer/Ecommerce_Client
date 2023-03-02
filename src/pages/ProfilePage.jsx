@@ -120,7 +120,7 @@ export default function ProfileScreen() {
           </>
         )}
         <div className="mb-3">
-          <Button disabled={loadingUpdate} type="submit">Update</Button>
+          <Button disabled={loadingUpdate} type="submit" className='blue-button'>Update</Button>
         </div>
       </form>
     </div>

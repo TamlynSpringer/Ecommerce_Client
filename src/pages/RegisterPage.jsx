@@ -86,7 +86,7 @@ const Register = () => {
           </Form.Group>
         </Form.Group>
         <div className="mb-3">
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className='blue-button'>Submit</Button>
         </div>
         <div className="mb-3">
           Already have an account? &nbsp;

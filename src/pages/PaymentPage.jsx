@@ -66,7 +66,10 @@ const PaymentPage = () => {
             />
           </div>
           <div className="mb-3">
-            <Button type="submit">Continue</Button>
+            <Button 
+            type="submit" 
+            className='blue-button'>
+              Continue</Button>
           </div>
         </Form>
       </div>

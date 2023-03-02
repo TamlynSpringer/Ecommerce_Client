@@ -40,12 +40,15 @@ const Product = (props) => {
         {/* <Rating rating={product.rating} numReviews={product.numReviews} />           */}
         <Card.Text><strong>${product.price}</strong></Card.Text>
         <Card.Text>
-          <Link to={`/seller/${product?.seller?._id}`}>{product.seller?.seller?.name}</Link>
+          <Link 
+          to={product?.seller ? `/seller/${product?.seller?._id}` : '/'}>
+            {product?.seller ? product.seller?.seller?.name : 'No seller'}
+          </Link>
         </Card.Text>
 
         {product.countInStock === 0 
         ? <Button variant='light' disabled>Out of stock</Button> 
-        : <Button onClick={() => addToCart(product)} className='cart-button'>Add to cart</Button>}
+        : <Button onClick={() => addToCart(product)} className='blue-button'>Add to cart</Button>}
         
       </Card.Body>
     </Card>
