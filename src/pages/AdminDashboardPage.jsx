@@ -60,16 +60,16 @@ const AdminDashboardPage = () => {
 
   return (
     <section>
-    <div>Admin dashboard</div>
+    <h3 className='m-3'>Admin dashboard</h3>
     {loading ? (<Loading />)
-    : error ? ( <Message variant='danger'>{error}</Message>)
+    : error ? ( <Message variant='warning'>{error}</Message>)
     : (
       <>
         <Row>
           <Col md={4}>
-            <Card>
+            <Card className='bg m-3'>
               <Card.Body>
-                <Card.Title>
+                <Card.Title >
                   {summary.users && summary.users[0] 
                   ? (summary.users[0].numUsers)
                   : 0}
@@ -79,7 +79,7 @@ const AdminDashboardPage = () => {
             </Card>
           </Col>
           <Col md={4}>
-            <Card>
+            <Card className='bg m-3'>
               <Card.Body>
                 <Card.Title>
                   {summary.orders && summary.users[0] 
@@ -91,7 +91,7 @@ const AdminDashboardPage = () => {
             </Card>
           </Col>
           <Col md={4}>
-            <Card>
+            <Card className='bg m-3'>
               <Card.Body>
                 <Card.Title>
                   ${summary.orders && summary.users[0] 

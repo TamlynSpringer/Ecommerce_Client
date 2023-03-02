@@ -171,7 +171,7 @@ const SearchPage = () => {
           {loading ? (
             <Loading></Loading>
           ) : error ? (
-            <Message variant="danger">{error}</Message>
+            <Message variant="warning">{error}</Message>
           ) : (
             <>
               <Row className="justify-content-between mb-3">

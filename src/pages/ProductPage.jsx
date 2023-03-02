@@ -71,75 +71,77 @@ const ProductPage = () => {
     ) : error ? (
       <Message variant='warning' aria-live="assertive">{error}</Message>
     ) : (
-    <section>
+    <>
       <Helmet>
         <title>{product.name}</title>
       </Helmet>
-      <Row>
-        <Col md={6}>
-          <img
-            className='img-small'
-            src={product.image}
-            alt={product.name}
-          ></img>
-        </Col>
-        <Col md={3}>
-          <ListGroup variant='flush'>
-            <ListGroupItem className='bg'>
-              <h1>{product.name}</h1>
-            </ListGroupItem>
-            <ListGroupItem className='bg'>
-              Category: &nbsp;{product.category}
-            </ListGroupItem>
-            <ListGroupItem className='bg'>
-              Brand: &nbsp;{product.brand}
-            </ListGroupItem>
-            <ListGroupItem className='bg'>
-              Description : {product.description}
-            </ListGroupItem>
-            <ListGroupItem className='bg'>
-              Seller: &nbsp; 
-                <Link to={`/seller/${product.seller?._id}`}>
-                  {product.seller?.seller?.name}
-                </Link>
-            </ListGroupItem>
-          </ListGroup>
-        </Col>
-
-        <Col md={3}>
-          <Card className='bg'>
-            <Card.Body className='bg'>
-            <ListGroup variant='flush' className='bg'>
+      <section className='container'>
+        <Row>
+          <Col md={6}>
+            <img
+              className='img-small'
+              src={product.image}
+              alt={product.name}
+            ></img>
+          </Col>
+          <Col md={3}>
+            <ListGroup variant='flush'>
               <ListGroupItem className='bg'>
-                <Row className='bg'>
-                  <Col>Price:</Col>
-                  <Col>${product.price}</Col>
-                </Row>
+                <h1>{product.name}</h1>
               </ListGroupItem>
               <ListGroupItem className='bg'>
-                <Row className='bg'>
-                  <Col>Status:</Col>
-                  <Col>
-                  {product.countInStock < 1 ? 
-                  <Badge bg='light'>Out of stock</Badge>
-                  : <Badge bg='success'>In stock</Badge>}
-                  </Col>
-                </Row>
+                Category: &nbsp;{product.category}
               </ListGroupItem>
-
-              {product.countInStock > 0 && (
-                <ListGroupItem  className='bg'>
-                  <div className='d-grid'>
-                    <Button className='blue-button' onClick={addToCart}>Add to cart</Button>
-                  </div>
-                </ListGroupItem>
-              )}
+              <ListGroupItem className='bg'>
+                Brand: &nbsp;{product.brand}
+              </ListGroupItem>
+              <ListGroupItem className='bg'>
+                Description : {product.description}
+              </ListGroupItem>
+              <ListGroupItem className='bg'>
+                Seller: &nbsp; 
+                  <Link to={`/seller/${product.seller?._id}`}>
+                    {product.seller?.seller?.name}
+                  </Link>
+              </ListGroupItem>
             </ListGroup>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </section>
+          </Col>
+
+          <Col md={3}>
+            <Card className='bg'>
+              <Card.Body className='bg'>
+              <ListGroup variant='flush' className='bg'>
+                <ListGroupItem className='bg'>
+                  <Row className='bg'>
+                    <Col>Price:</Col>
+                    <Col>${product.price}</Col>
+                  </Row>
+                </ListGroupItem>
+                <ListGroupItem className='bg'>
+                  <Row className='bg'>
+                    <Col>Status:</Col>
+                    <Col>
+                    {product.countInStock < 1 ? 
+                    <Badge bg='light'>Out of stock</Badge>
+                    : <Badge bg='success'>In stock</Badge>}
+                    </Col>
+                  </Row>
+                </ListGroupItem>
+
+                {product.countInStock > 0 && (
+                  <ListGroupItem  className='bg'>
+                    <div className='d-grid'>
+                      <Button className='blue-button' onClick={addToCart}>Add to cart</Button>
+                    </div>
+                  </ListGroupItem>
+                )}
+              </ListGroup>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </section>
+    </>
   )
 }
 

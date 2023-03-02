@@ -53,7 +53,7 @@ const Home = () => {
         {loading ? (
           <Loading />
         ) : error ? (
-          <Message variant='danger' aria-live="assertive">{error}</Message>
+          <Message variant='warning' aria-live="assertive">{error}</Message>
         ) : (
           <Row>
           {products?.map(product => (

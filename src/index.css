@@ -54,8 +54,13 @@ h1, h2, h3, p {
   color: #fff
 }
 
+.app {
+  background-color: #212529;
+  min-height: 100vh;
+}
+
 .bg {
-  background-color: #252525;
+  background-color: #212529;
   color: #fff;
   border: none;
 }

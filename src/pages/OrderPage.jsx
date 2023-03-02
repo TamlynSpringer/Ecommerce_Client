@@ -60,7 +60,7 @@ const OrderPage = () => {
     loading ? (
       <Loading></Loading>
     ) : error ? (
-      <Message variant='danger'>{error}</Message>
+      <Message variant='warning'>{error}</Message>
     ) : (
       <div>
         <Helmet>Order {orderId}</Helmet>

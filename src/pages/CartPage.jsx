@@ -38,15 +38,15 @@ const Cart = () => {
         <title>Shopping cart</title>
       </Helmet>
       <h1>Shopping cart</h1>
-      <Row>
+      <Row className='bg'>
         <Col md={8}>
           {cartItems.length === 0 || !cartItems  ? (
             <Message>Cart is empty. <Link to='/'>Go to products</Link></Message>
           ) : 
           ( <ListGroup>
               {cartItems?.map((item) => (
-                <ListGroupItem key={item._id}>
-                  <Row className='align-items-center'>
+                <ListGroupItem key={item._id} className='bg'>
+                  <Row className='align-items-center bg'>
                     <Col md={4}>
                       <img
                         src={item.image}
@@ -85,7 +85,7 @@ const Cart = () => {
           </ListGroup>)}
         </Col>
         <Col md={4}>
-          <Card>
+          <Card className='bg'>
             <Card.Body>
               <ListGroup variant='flush'>
                 <ListGroupItem>

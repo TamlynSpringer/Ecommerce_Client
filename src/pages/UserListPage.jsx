@@ -98,9 +98,9 @@ export default function UserListPage() {
       {loading ? (
         <Loading></Loading>
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <Message variant="warning">{error}</Message>
       ) : (
-        <table className="table">
+        <table className="table text-white">
           <thead>
             <tr>
               <th>User ID</th>

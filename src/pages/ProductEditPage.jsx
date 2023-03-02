@@ -161,7 +161,7 @@ export default function ProductEditScreen() {
       {loading ? (
         <Loading></Loading>
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <Message variant="warning">{error}</Message>
       ) : (
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="name">

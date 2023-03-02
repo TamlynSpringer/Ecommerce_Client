@@ -81,7 +81,7 @@ const PlaceOrderPage = () => {
       <h1 className='my-3'>Preview order</h1>
       <Row>
         <Col md={8}>
-          <Card className='mb-3'>
+          <Card className='mb-3 bg'>
             <Card.Body>
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
@@ -92,7 +92,7 @@ const PlaceOrderPage = () => {
             </Card.Body>
           </Card>
 
-          <Card className="mb-3">
+          <Card className="mb-3 bg">
             <Card.Body>
               <Card.Title>Payment</Card.Title>
               <Card.Text>
@@ -102,13 +102,13 @@ const PlaceOrderPage = () => {
             </Card.Body>
           </Card>
 
-          <Card className="mb-3">
+          <Card className="mb-3 bg">
             <Card.Body>
               <Card.Title>Items</Card.Title>
               <ListGroup variant="flush">
                 {cart.cartItems.map((item) => (
-                  <ListGroup.Item key={item._id}>
-                    <Row className="align-items-center">
+                  <ListGroup.Item key={item._id} className='bg'>
+                    <Row className="align-items-center bg">
                       <Col md={6}>
                         <img
                           src={item.image}
@@ -132,7 +132,7 @@ const PlaceOrderPage = () => {
         </Col>
 
         <Col md={4}>
-          <Card>
+          <Card className='bg'>
             <Card.Body>
               <Card.Title>Order Summary</Card.Title>
               <ListGroup variant="flush">
