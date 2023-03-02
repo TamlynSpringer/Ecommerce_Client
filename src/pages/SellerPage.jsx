@@ -111,7 +111,7 @@ export default function SellerPage() {
                             <>
                                 {products.length === 0 && <Message>No product found</Message>}
                                 {products.map((product) => (
-                                    <Col xs={6} md={4} lg={4} key={product.slug} className="mb-3">
+                                    <Col xs={6} md={4} lg={4} key={product.sku} className="mb-3">
                                         <Product key={product._id} product={product}></Product>
                                     </Col>
 

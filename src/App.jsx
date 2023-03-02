@@ -190,7 +190,7 @@ const App = () => {
               <Route path='/' element={<HomePage />} />
               <Route path='/search' element={<SearchPage />} />
               <Route path='/seller/:id' element={<SellerPage />} />
-              <Route path='/product/:slug' element={<ProductPage />} />
+              <Route path='/product/:sku' element={<ProductPage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/register' element={<RegisterPage />} />
               {/* Protected user routes */}

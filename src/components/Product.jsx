@@ -27,11 +27,11 @@ const Product = (props) => {
 
   return (
     <Card className='product bg'>
-      <Link to={`/product/${product.slug}`}>
+      <Link to={`/product/${product.sku}`}>
         <img src={product.image} alt={product.name} className='card-img-top' />
       </Link>
       <Card.Body className='bg'>
-        <Link to={`/product/${product.slug}`}>
+        <Link to={`/product/${product.sku}`}>
           <Card.Title className='bg'>{product.name}</Card.Title>
         </Link>  
         {/* <Rating rating={product.rating} numReviews={product.numReviews} />           */}
