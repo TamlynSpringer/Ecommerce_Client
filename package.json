@@ -1,5 +1,6 @@
 {
   "name": "ecommerce-client",
+  "proxy": "https://baltic-store-api.cyclic.app/",
   "private": true,
   "version": "0.0.0",
   "type": "module",

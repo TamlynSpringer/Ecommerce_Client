@@ -5,7 +5,7 @@ import Message from '../components/Message';
 import axios from '../api/axios';
 import { Store } from '../context/Store';
 import { getError } from '../utils/utils';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
@@ -116,7 +116,11 @@ export default function UserListPage() {
                 <td>{user._id}</td>
                 <td>{user.email}</td>
                 <td>{user.isAdmin ? 'Admin ' : ''}{user.isSeller ? 'Seller ' : ''}{(!user.isSeller || !user.isAdmin) ? 'User ' : ''} </td>
-                <td>{user.storeId}</td> //Change to seller page link
+                <td>
+                  {user.isSeller ?  
+                  <Link to={`/seller/${user._id}`}>&nbsp;<i className="fa-solid fa-store"></i>&nbsp;</Link> 
+                  : ''}
+                </td>
                 <td>
                   <Button
                     type="button"
