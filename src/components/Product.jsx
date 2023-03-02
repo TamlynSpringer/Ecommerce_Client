@@ -25,13 +25,15 @@ const Product = (props) => {
     });
   };
 
+  console.log(product)
+
   return (
     <Card className='product bg'>
-      <Link to={`/product/${product.sku}`}>
+      <Link to={`/product/${product.slug}`}>
         <img src={product.image} alt={product.name} className='card-img-top' />
       </Link>
       <Card.Body className='bg'>
-        <Link to={`/product/${product.sku}`}>
+        <Link to={`/product/${product.slug}`}>
           <Card.Title className='bg'>{product.name}</Card.Title>
         </Link>  
         {/* <Rating rating={product.rating} numReviews={product.numReviews} />           */}

@@ -115,7 +115,7 @@ const PlaceOrderPage = () => {
                           alt={item.name}
                           className="img-fluid rounded img-thumbnail"
                         ></img>{'  '}
-                        <Link to={`/product/${item.sku}`}>&nbsp; &nbsp; {item.name}</Link>
+                        <Link to={`/product/${item.slug}`}>&nbsp; &nbsp; {item.name}</Link>
                       </Col>
                       <Col md={3}>
                         <span>{item.quantity}</span>
