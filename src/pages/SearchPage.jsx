@@ -80,8 +80,6 @@ const SearchPage = () => {
     fetchData();
   }, [category, error, order, page, price, query]);
 
-  // console.log(order)
-
   const [categories, setCategories] = useState([]);
   const [listOrder, setListOrder] = useState('')
 

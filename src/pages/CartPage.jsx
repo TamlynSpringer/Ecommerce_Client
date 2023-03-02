@@ -11,12 +11,9 @@ const Cart = () => {
   
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart: { cartItems }} = state;
-  console.log('quantity cart:', cartItems[0]?.quantity)
   
   const updateCart = async (item, quantity) => {
-    console.log('item:', item)
     const { data } = await axios.get(`/api/products/${item._id}`);
-    console.log('stock:', data.countInStock)
     if (data?.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
       return;

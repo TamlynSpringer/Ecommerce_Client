@@ -51,7 +51,6 @@ const ProductPage = () => {
   const { cart, userInfo } = state;
 
   const addToCart = async () => {
-    console.log('cart:', cart)
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
@@ -64,10 +63,8 @@ const ProductPage = () => {
       payload: { ...product, quantity },
     });
     navigate('/cart');
-    console.log({ data })
   };
 
-  console.log(product)
 
   return loading ? (
     <Loading />

@@ -79,8 +79,6 @@ export default function ProductListScreen(props) {
 
   const { state } = useContext(Store);
   const { userInfo } = state;
-  console.log(userInfo?._id)
-  console.log(sellerMode)
 
   useEffect(() => {
     const fetchData = async (sellerMode) => {

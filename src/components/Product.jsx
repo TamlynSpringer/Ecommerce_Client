@@ -12,16 +12,13 @@ const Product = (props) => {
   const { cart: { cartItems } } = state;
 
   const addToCart = async (item) => {
-    console.log('product:', product)
     const existItem = cartItems.find((x) => x._id === product._id);
-    console.log('item:', existItem)
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${item._id}`);
     if (data.countInStock < quantity) {
       window.alert('Product out of stock');
       return;
     }
-    console.log('quantity:', quantity)
     ctxDispatch({
       type: 'CART_ADD_ITEM',
       payload: { ...item, quantity },
