@@ -140,7 +140,6 @@ export default function ProductListScreen(props) {
       }
     }
   };
-  console.log(products)
 
   return (
     <div>

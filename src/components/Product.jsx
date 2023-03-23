@@ -25,8 +25,6 @@ const Product = (props) => {
     });
   };
 
-  console.log(product)
-
   return (
     <Card className='product bg'>
       <Link to={`/product/${product.slug}`}>

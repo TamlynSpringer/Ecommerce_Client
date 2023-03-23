@@ -67,7 +67,7 @@ const OrderPage = () => {
         <h1>Order details: {orderId}</h1>
         <Row>
         <Col md={8}>
-          <Card className="mb-3">
+          <Card className="mb-3 bg">
             <Card.Body>
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
@@ -85,7 +85,7 @@ const OrderPage = () => {
               )}
             </Card.Body>
           </Card>
-          <Card className="mb-3">
+          <Card className="mb-3 bg">
             <Card.Body>
               <Card.Title>Payment</Card.Title>
               <Card.Text>
@@ -101,13 +101,13 @@ const OrderPage = () => {
             </Card.Body>
           </Card>
 
-          <Card className="mb-3">
+          <Card className="mb-3 bg">
             <Card.Body>
               <Card.Title>Items</Card.Title>
               <ListGroup variant="flush">
                 {order.orderItems.map((item) => (
-                  <ListGroup.Item key={item._id}>
-                    <Row className="align-items-center">
+                  <ListGroup.Item key={item._id} className='bg'>
+                    <Row className="align-items-center bg">
                       <Col md={6}>
                         <img
                           src={item.image}
@@ -128,7 +128,7 @@ const OrderPage = () => {
           </Card>
         </Col>
         <Col md={4}>
-          <Card className="mb-3">
+          <Card className="mb-3 bg">
             <Card.Body>
               <Card.Title>Order summary</Card.Title>
               <ListGroup variant="flush">
@@ -139,7 +139,7 @@ const OrderPage = () => {
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Row>
+                  <Row >
                     <Col>Shipping</Col>
                     <Col>${order.shippingPrice.toFixed(2)}</Col>
                   </Row>
@@ -154,32 +154,6 @@ const OrderPage = () => {
                     </Col>
                   </Row>
                 </ListGroup.Item>
-                {/* {!order.isPaid && (
-                  <ListGroup.Item>
-                    {isPending ? (
-                      <LoadingBox />
-                    ) : (
-                      <div>
-                        <PayPalButtons
-                          createOrder={createOrder}
-                          onApprove={onApprove}
-                          onError={onError}
-                        ></PayPalButtons>
-                      </div>
-                    )}
-                    {loadingPay && <LoadingBox></LoadingBox>}
-                  </ListGroup.Item>
-                )}
-                {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-                  <ListGroup.Item>
-                    {loadingDeliver && <LoadingBox></LoadingBox>}
-                    <div className="d-grid">
-                      <Button type="button" onClick={deliverOrderHandler}>
-                        Deliver Order
-                      </Button>
-                    </div>
-                  </ListGroup.Item>
-                )} */}
               </ListGroup>
             </Card.Body>
           </Card>

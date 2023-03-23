@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer } from 'react';
 import axios from '../api/axios';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
@@ -25,8 +25,6 @@ const Home = () => {
     loading: true, 
     error: '' 
   });
-
-  const errRef = useRef();
 
   useEffect(() => {    
     const fetchData = async () => {

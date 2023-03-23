@@ -47,6 +47,8 @@ const App = () => {
 
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
+  const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -58,6 +60,18 @@ const App = () => {
       }
     };
     fetchCategories();
+  }, []);
+  
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        const { data } = await axios.get(`/api/products/brands`);
+        setBrands(data)
+      } catch (err) {
+        toast.error(getError(err));       
+      }
+    }
+    fetchBrands()
   }, []);
 
   return (
@@ -162,7 +176,7 @@ const App = () => {
               : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
           }
         >
-          <Nav className="flex-column text-white w-100 p-4">
+          <Nav className="flex-column text-white w-140 p-2">
             <Nav.Item>
               <br />
               <h3>Filter by:</h3>
@@ -178,6 +192,19 @@ const App = () => {
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
+                </LinkContainer>
+              </Nav.Item>   
+            ))}
+            <Nav.Item>
+              <h4>Brands</h4>
+            </Nav.Item>
+            {brands.map((brand) => (
+              <Nav.Item key={brand}>
+                <LinkContainer
+                  to={{ pathname: '/search', search: `brand=${brand}` }}
+                  onClick={() => setSidebarIsOpen(false)}
+                >
+                  <Nav.Link>{brand}</Nav.Link>
                 </LinkContainer>
               </Nav.Item>
             ))}
