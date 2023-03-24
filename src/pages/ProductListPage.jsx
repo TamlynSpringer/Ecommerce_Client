@@ -142,7 +142,7 @@ export default function ProductListScreen(props) {
   };
 
   return (
-    <div>
+    <div  className='my-3'>
       <Row>
         <Col>
           <h1>Products</h1>

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async';
 import axios from '../api/axios';
 import Loading from '../components/Loading';
 import Message from '../components/Message';
@@ -59,52 +60,55 @@ const AdminDashboardPage = () => {
   }, [userInfo]);
 
   return (
-    <section>
-    <h3 className='m-3'>Admin dashboard</h3>
-    {loading ? (<Loading />)
-    : error ? ( <Message variant='warning'>{error}</Message>)
-    : (
-      <>
-        <Row>
-          <Col md={4}>
-            <Card className='bg m-3'>
-              <Card.Body>
-                <Card.Title >
-                  {summary.users && summary.users[0] 
-                  ? (summary.users[0].numUsers)
-                  : 0}
-                </Card.Title>
-                <Card.Text>Users</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}>
-            <Card className='bg m-3'>
-              <Card.Body>
-                <Card.Title>
-                  {summary.orders && summary.users[0] 
-                  ? summary.orders[0].numOrders
-                  : 0}
-                </Card.Title>
-                <Card.Text>Orders</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}>
-            <Card className='bg m-3'>
-              <Card.Body>
-                <Card.Title>
-                  ${summary.orders && summary.users[0] 
-                  ? summary.orders[0].totalSales.toFixed(2)
-                  : 0}
-                </Card.Title>
-                <Card.Text>Total sales</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </>
-    )}
+    <section className="container small-container">
+      <Helmet>
+        <title>Admin dashboard</title>
+      </Helmet>
+      <h3 className='m-3'>Admin dashboard</h3>
+      {loading ? (<Loading />)
+      : error ? ( <Message variant='warning'>{error}</Message>)
+      : (
+        <>
+          <Row>
+            <Col md={4}>
+              <Card className='bg m-3'>
+                <Card.Body>
+                  <Card.Title >
+                    {summary.users && summary.users[0] 
+                    ? (summary.users[0].numUsers)
+                    : 0}
+                  </Card.Title>
+                  <Card.Text>Users</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={4}>
+              <Card className='bg m-3'>
+                <Card.Body>
+                  <Card.Title>
+                    {summary.orders && summary.users[0] 
+                    ? summary.orders[0].numOrders
+                    : 0}
+                  </Card.Title>
+                  <Card.Text>Orders</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={4}>
+              <Card className='bg m-3'>
+                <Card.Body>
+                  <Card.Title>
+                    ${summary.orders && summary.users[0] 
+                    ? summary.orders[0].totalSales.toFixed(2)
+                    : 0}
+                  </Card.Title>
+                  <Card.Text>Total sales</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </>
+      )}
     </section>
   )
 };

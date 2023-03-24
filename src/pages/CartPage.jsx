@@ -33,7 +33,7 @@ const Cart = () => {
   }
 
   return (
-    <div className='my-3'>
+    <div className='my-3 container wide-container'>
       <Helmet>
         <title>Shopping cart</title>
       </Helmet>

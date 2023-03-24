@@ -1,8 +1,12 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 
 const InfoPage = () => {
   return (
     <section>
+      <Helmet>
+        <title>Instructions</title>
+      </Helmet>
       <br/>
       <article>
       <h3>App description</h3>

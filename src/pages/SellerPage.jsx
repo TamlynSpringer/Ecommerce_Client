@@ -1,5 +1,4 @@
 import axios from '../api/axios';
-import { Store } from '../context/Store';
 import { getError } from '../utils/utils';
 import React, { useEffect, useReducer } from 'react';
 import { Badge, Card, Col, Row, ListGroup } from 'react-bootstrap';
@@ -7,8 +6,7 @@ import { useParams } from 'react-router-dom';
 import Loading from '../components/Loading';
 import Message from '../components/Message';
 import Product from '../components/Product';
-import Rating from '../components/Rating';
-
+import { Helmet } from 'react-helmet-async';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -63,7 +61,10 @@ export default function SellerPage() {
 
     return (
         <section className='mt-3'>
-          <Row>
+            <Helmet>
+                <title>Store</title>
+            </Helmet>
+            <Row>
               <Col md={3}>
                 {loadingSeller ? (
                   <Loading />
@@ -83,12 +84,6 @@ export default function SellerPage() {
                                 <Col>Store description: {user?.seller?.description}</Col>
                             </Row>
                         </ListGroup.Item>
-                        {/* <ListGroup.Item>
-                            <Rating
-                                rating={user?.seller?.rating}
-                                numReviews={user?.seller?.numReviews}
-                            ></Rating>
-                        </ListGroup.Item> */}
                         <ListGroup.Item className='bg'>
                             <Row>
                                 <Col>
