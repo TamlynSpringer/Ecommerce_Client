@@ -47,36 +47,9 @@ const App = () => {
   };
 
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [brands, setBrands] = useState([]);
-  const [sellers, setSellers] = useState([]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const { data } = await axios.get(`/api/products/categories`);
-        setCategories(data);
-      } catch (err) {
-        toast.error(getError(err));
-      }
-    };
-    fetchCategories();
-  }, []);
-  
-  useEffect(() => {
-    const fetchBrands = async () => {
-      try {
-        const { data } = await axios.get(`/api/products/brands`);
-        setBrands(data)
-      } catch (err) {
-        toast.error(getError(err));       
-      }
-    }
-    fetchBrands()
-  }, []);
 
   return (
-    <main className='app'>
+    <div className='app'>
       <div
       className={
         sidebarIsOpen
@@ -89,12 +62,15 @@ const App = () => {
         <header>
           <Navbar bg='dark' variant='dark'>
             <Container>
-              <Button
+              {/* <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className="fas fa-bars"></i>
-              </Button>
+              </Button> */}
+              <Link to='/search'>
+                <i className="fas fa-bars white"></i>
+              </Link>
               <LinkContainer to='/'>
               <Navbar.Brand>
                 <img className='logo' src={logo} alt='logo' height='75px'/>
@@ -173,48 +149,6 @@ const App = () => {
             </Container>
           </Navbar>
         </header>
-
-        <div
-          className={
-            sidebarIsOpen
-              ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
-              : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
-          }
-        >
-          <Nav className="flex-column text-white w-140 p-2">
-            <Nav.Item>
-              <br />
-              <h3>Filter by:</h3>
-              <br />
-            </Nav.Item>
-            <Nav.Item>
-              <h4>Categories</h4>
-            </Nav.Item>
-            {categories.map((category) => (
-              <Nav.Item key={category}>
-                <LinkContainer
-                  to={{ pathname: '/search', search: `category=${category}` }}
-                  onClick={() => setSidebarIsOpen(false)}
-                >
-                  <Nav.Link>{category}</Nav.Link>
-                </LinkContainer>
-              </Nav.Item>   
-            ))}
-            <Nav.Item>
-              <h4>Brands</h4>
-            </Nav.Item>
-            {brands.map((brand) => (
-              <Nav.Item key={brand}>
-                <LinkContainer
-                  to={{ pathname: '/search', search: `brand=${brand}` }}
-                  onClick={() => setSidebarIsOpen(false)}
-                >
-                  <Nav.Link>{brand}</Nav.Link>
-                </LinkContainer>
-              </Nav.Item>
-            ))}
-          </Nav>
-        </div>
 
         <main className='main'>
           <Container className=''>
@@ -316,15 +250,18 @@ const App = () => {
                     <UserEditScreen />
                   </AdminRoutes>
                 } />
-
             </Routes>       
           </Container>
         </main>
-        {/* <footer>
-          <div className='text-center'>Tamlyn Springer | 2023 | All rights reserved</div>
-        </footer> */}  
       </div>
-    </main>
+      <footer>
+        <div className='text-center bg'>
+          2023 | Tamlyn Springer |
+          <a href='https://github.com/TamlynSpringer' target='blank'>&nbsp;<i className="fa-brands fa-github"></i>&nbsp;</a> |
+          <a href='https://www.linkedin.com/in/tamlyn-springer-v/' target='blank'>&nbsp;<i className="fa-brands fa-linkedin"></i>&nbsp;</a> 
+        </div>
+      </footer> 
+    </div>
   )
 };
 

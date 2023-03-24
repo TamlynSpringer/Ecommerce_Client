@@ -33,7 +33,7 @@ const Cart = () => {
   }
 
   return (
-    <div>
+    <div className='my-3'>
       <Helmet>
         <title>Shopping cart</title>
       </Helmet>
@@ -88,14 +88,14 @@ const Cart = () => {
           <Card className='bg'>
             <Card.Body>
               <ListGroup variant='flush'>
-                <ListGroupItem>
+                <ListGroupItem className='bg'>
                   <h4>
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
                     items) : $
                     {cartItems?.reduce((a, c) => a + c.price * c.quantity, 0)} 
                   </h4>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem className='bg'>
                   <div className='d-grid'>
                     <Button
                       type='button'

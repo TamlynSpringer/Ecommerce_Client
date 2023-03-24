@@ -113,7 +113,7 @@ const SearchPage = () => {
 
       <Row>
         <Col md={3}>
-          <h3>Filter products by: </h3>
+          <h3 className='mt-3'>Filter products by: </h3>
           <br />
           <h4>Product category</h4>
           <div>
@@ -172,7 +172,7 @@ const SearchPage = () => {
             <Message variant="warning">{error}</Message>
           ) : (
             <>
-              <Row className="justify-content-between mb-3">
+              <Row className="justify-content-between m-3">
                 <Col md={6}>
                   <div>
                     {countProducts === 0 ? 'No' : countProducts} Results
@@ -221,7 +221,7 @@ const SearchPage = () => {
 
               <Row>
                 {products?.map((product) => (
-                  <Col sm={6} lg={4} className="mb-3" key={product._id}>
+                  <Col sm={6} lg={4} className="my-3" key={product._id}>
                     <Product product={product}></Product>
                   </Col>
                 ))}

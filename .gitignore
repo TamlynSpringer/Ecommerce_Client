@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 src/data.js
+src/components/SideBar.jsx
 
 # Editor directories and files
 .vscode/*
