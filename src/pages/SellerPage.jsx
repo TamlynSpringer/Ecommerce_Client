@@ -62,7 +62,7 @@ export default function SellerPage() {
     console.log(user.seller, user._id)
 
     return (
-        <>
+        <section className='mt-3'>
           <Row>
               <Col md={3}>
                 {loadingSeller ? (
@@ -70,15 +70,15 @@ export default function SellerPage() {
                 ) : error ? (
                   <Message variant="warning">{error}</Message>
                 ) : (
-                    <Card>
+                    <Card className='bg'>
                       <Card.Body>
                         <ListGroup variant="flush">
-                          <ListGroup.Item>
+                          <ListGroup.Item className='bg'>
                             <Row>
                                 <Col>Store name: {user?.seller?.name}</Col>
                             </Row>
                         </ListGroup.Item>
-                        <ListGroup.Item>
+                        <ListGroup.Item className='bg'>
                             <Row>
                                 <Col>Store description: {user?.seller?.description}</Col>
                             </Row>
@@ -89,7 +89,7 @@ export default function SellerPage() {
                                 numReviews={user?.seller?.numReviews}
                             ></Rating>
                         </ListGroup.Item> */}
-                        <ListGroup.Item>
+                        <ListGroup.Item className='bg'>
                             <Row>
                                 <Col>
                                     <Badge bg="warning"> <a className="text-decoration-none text-white" href={`mailto:${user?.email}`}>Contact seller</a></Badge>
@@ -121,6 +121,6 @@ export default function SellerPage() {
                     </Row>
                 </Col>
             </Row >
-        </>
+        </section>
     );
 }

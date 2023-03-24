@@ -7,6 +7,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useContext, useEffect, useState } from 'react';
 import { Store } from './context/Store';
 import CartPage from './pages/CartPage';
+import InfoPage from './pages/InfoPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import { toast, ToastContainer } from 'react-toastify';
@@ -162,6 +163,10 @@ const App = () => {
                       </LinkContainer>
                     </NavDropdown>
                   )}
+
+                  <Link to='/info' className='nav-link'>
+                  <i className="fa-solid fa-circle-info"></i>
+                  </Link>
                   
                 </Nav>
               </Navbar.Collapse>
@@ -220,6 +225,7 @@ const App = () => {
               <Route path='/product/:slug' element={<ProductPage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/register' element={<RegisterPage />} />
+              <Route path='/info' element={<InfoPage />} />
               {/* Protected user routes */}
               <Route path='/cart' element={
                 <ProtectedRoutes>

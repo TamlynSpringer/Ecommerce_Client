@@ -129,22 +129,22 @@ const OrderPage = () => {
         </Col>
         <Col md={4}>
           <Card className="mb-3 bg">
-            <Card.Body>
+            <Card.Body className='bg'>
               <Card.Title>Order summary</Card.Title>
               <ListGroup variant="flush">
-                <ListGroup.Item>
+                <ListGroup.Item className='bg'>
                   <Row>
                     <Col>Items</Col>
                     <Col>${order.itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='bg'>
                   <Row >
                     <Col>Shipping</Col>
                     <Col>${order.shippingPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='bg'>
                   <Row>
                     <Col>
                       <strong> Order Total</strong>

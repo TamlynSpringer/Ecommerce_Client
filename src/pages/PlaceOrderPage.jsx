@@ -82,7 +82,7 @@ const PlaceOrderPage = () => {
       <Row>
         <Col md={8}>
           <Card className='mb-3 bg'>
-            <Card.Body>
+            <Card.Body className='ms-3'>
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
                 <strong>Name: &nbsp;</strong> {cart.shippingAddress.fullname} <br />
@@ -93,7 +93,7 @@ const PlaceOrderPage = () => {
           </Card>
 
           <Card className="mb-3 bg">
-            <Card.Body>
+            <Card.Body className='ms-3'>
               <Card.Title>Payment</Card.Title>
               <Card.Text>
                 <strong>Method: &nbsp;</strong> {cart.paymentMethod}
@@ -104,7 +104,7 @@ const PlaceOrderPage = () => {
 
           <Card className="mb-3 bg">
             <Card.Body>
-              <Card.Title>Items</Card.Title>
+              <Card.Title className='ms-3'>Items</Card.Title>
               <ListGroup variant="flush">
                 {cart.cartItems.map((item) => (
                   <ListGroup.Item key={item._id} className='bg'>
@@ -125,7 +125,7 @@ const PlaceOrderPage = () => {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              <Link to="/cart">Edit</Link>
+              <Link to="/cart" className='ms-3'>Edit</Link>
 
             </Card.Body>
           </Card>
@@ -133,22 +133,22 @@ const PlaceOrderPage = () => {
 
         <Col md={4}>
           <Card className='bg'>
-            <Card.Body>
-              <Card.Title>Order Summary</Card.Title>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
+            <Card.Body className='bg'>
+              <Card.Title className='ms-3'>Order Summary</Card.Title>
+              <ListGroup variant="flush" className='bg'>
+                <ListGroup.Item className='bg'>
                   <Row>
                     <Col>Items</Col>
                     <Col>${cart.itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='bg'>
                   <Row>
                     <Col>Shipping</Col>
                     <Col>${cart.shippingPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='bg'>
                   <Row>
                     <Col>
                       <strong> Order Total</strong>
@@ -158,7 +158,7 @@ const PlaceOrderPage = () => {
                     </Col>
                   </Row>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='bg'>
                   <div className="d-grid">
                     <Button
                       type="button"

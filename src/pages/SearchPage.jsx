@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import { getError } from '../utils/utils';
 import { Helmet } from 'react-helmet-async';
 import { Row, Col, Button } from 'react-bootstrap';
-// import Rating from '../components/Rating';
 import Loading from '../components/Loading';
 import Message from '../components/Message';
 import Product from '../components/Product';
@@ -81,7 +80,6 @@ const SearchPage = () => {
   }, [category, error, order, page, price, query]);
 
   const [categories, setCategories] = useState([]);
-  const [listOrder, setListOrder] = useState('')
 
   useEffect(() => {
     const fetchCategories = async () => {
