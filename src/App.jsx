@@ -60,7 +60,7 @@ const App = () => {
         <ToastContainer position='bottom-center' limit={1} />
 
         <header>
-          <Navbar bg='dark' variant='dark'>
+          <Navbar collapseOnSelect expand="md" bg='dark' variant='dark' >
             <Container>
               {/* <Button
                 variant="dark"
@@ -69,11 +69,11 @@ const App = () => {
                 <i className="fas fa-bars"></i>
               </Button> */}
               <Link to='/search'>
-                <i className="fas fa-bars white"></i>
+              <i className="fa-solid fa-filter"></i>
               </Link>
               <LinkContainer to='/'>
               <Navbar.Brand>
-                <img className='logo' src={logo} alt='logo' height='75px'/>
+                <img className='logo' src={logo} alt='logo' height='65px'/>
               </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -81,7 +81,7 @@ const App = () => {
                 <Search />
                 <Nav className='me-auto  w-100  justify-content-end'>
                   <Link to='/cart' className='nav-link'>
-                  <i className="fa-solid fa-cart-shopping"></i>&nbsp;Cart &nbsp;
+                  <i className="fa-solid fa-cart-shopping"></i>&nbsp; Cart &nbsp;
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg='warning' >
                         {cart.cartItems.reduce((a, c) => a + c?.quantity, 0)}
